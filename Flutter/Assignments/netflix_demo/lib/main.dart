@@ -8,6 +8,7 @@ class MainApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar:AppBar(
           title: const Text("NETFLIX",
@@ -21,7 +22,7 @@ class MainApp extends StatelessWidget{
         ),
         backgroundColor: Colors.black,
         body:ListView.builder(
-          itemCount: 10,
+          itemCount: 1,
           physics: const BouncingScrollPhysics(),
           itemBuilder: (BuildContext context,int index){
             return Column(
@@ -38,9 +39,9 @@ class MainApp extends StatelessWidget{
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [
+                    children:[
                       Container(
-                      padding:const EdgeInsets.all(1),
+                      padding:const EdgeInsets.all(5),
                       height: 300,
                       width: 200,
                       child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDJH-n02M3TtjnuBWjoFovi-uMJ_2gWRgSEA&s"),
@@ -79,7 +80,9 @@ class MainApp extends StatelessWidget{
                   ),
                 ),
               ],
+              
             );
+            
           },
         ),
       ),
