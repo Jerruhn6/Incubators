@@ -16,7 +16,7 @@ class BookMyShowHomePage extends StatefulWidget {
   const BookMyShowHomePage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
+  
   _BookMyShowHomePageState createState() => _BookMyShowHomePageState();
 }
 
@@ -355,7 +355,7 @@ class _BookMyShowHomePageState extends State<BookMyShowHomePage> {
                         ),
                       ],
                     ),
-              ),
+            ),
               const SizedBox(
               height: 10,
             ),

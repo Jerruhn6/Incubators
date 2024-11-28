@@ -45,7 +45,7 @@ class _MainAppState extends State<MainApp>{
                 obscureText: true,
                 decoration: const InputDecoration(
                   suffix: Icon(Icons.visibility),
-                  hintText: "Enter Name",
+                  hintText: "Player Name",
                   hintStyle: TextStyle(
                     fontSize: 25,
                     color: Colors.grey,
@@ -84,7 +84,7 @@ class _MainAppState extends State<MainApp>{
                 color: Colors.blue,
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: const Text("Add Data",
+              child: const Text("Jersy Number",
               style: TextStyle(
                 fontSize: 25,
                 color: Colors.white),
