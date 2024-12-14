@@ -23,7 +23,7 @@ class _ProductsInfoState extends State<ProductsInfo> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Image.asset('assets/cappuccino.png'), // Replace with your image
+            Image.asset('assets/cappuccino.png'),
             Padding(
               padding: EdgeInsets.all(16.0),
               child: Column(
@@ -42,8 +42,8 @@ class _ProductsInfoState extends State<ProductsInfo> {
                           fontStyle: FontStyle.normal,
                         ),
                       ),
-                      Spacer(),
-                      Icon(Icons.star),
+                      const Spacer(),
+                      const Icon(Icons.star),
                       Text('4.9'),
                     ],
                   ),
@@ -133,17 +133,21 @@ class _ProductsInfoState extends State<ProductsInfo> {
         Row(
           children: <Widget>[
             IconButton(
-              icon: Icon(Icons.remove),
+              icon: const Icon(Icons.remove),
               onPressed: () {
                 setState(() {
                   if (count > 0) {
-                    if (topping == 'Caramel')
+                    if (topping == 'Caramel') {
                       caramelCount--;
-                    else if (topping == 'Chocolate')
+                    } else if (topping == 'Chocolate'){
                       chocolateCount--;
-                    else if (topping == 'Banana')
+                    }
+                    else if (topping == 'Banana'){
                       bananaCount--;
-                    else if (topping == 'Strawberry') strawberryCount--;
+                    }
+                    else if (topping == 'Strawberry'){
+                       strawberryCount--;
+                    }
                   }
                 });
               },
@@ -158,9 +162,9 @@ class _ProductsInfoState extends State<ProductsInfo> {
                   } else if (topping == 'Chocolate') {
                     chocolateCount++;
                   }
-                  // ignore: curly_braces_in_flow_control_structures
-                  else if (topping == 'Banana')
+                  else if (topping == 'Banana'){
                     bananaCount++;
+                  }
                   else if (topping == 'Strawberry') strawberryCount++;
                 });
               },

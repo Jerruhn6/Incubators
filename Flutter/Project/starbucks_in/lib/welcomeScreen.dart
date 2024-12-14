@@ -1,5 +1,11 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:starbucks_in/customSnackbar.dart';
+import 'package:starbucks_in/homeScreen.dart';
+import 'package:starbucks_in/ragister.dart';
 
 class Welcomescreen extends StatefulWidget {
   const Welcomescreen({super.key});
@@ -9,28 +15,44 @@ class Welcomescreen extends StatefulWidget {
 }
 
 class _WelcomescreenState extends State<Welcomescreen> {
+  final TextEditingController _emailTextEditingController =
+      TextEditingController();
+  final TextEditingController _passwordtextEditingController =
+      TextEditingController();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
-      body: Container(
+      backgroundColor: Theme.of(context).colorScheme.errorContainer,
+      //backgroundColor: Colors.white,
+      body: SingleChildScrollView(
         child: Stack(
           children: [
-            Image.asset("assets/image_15.png"),
-            Image.asset("assets/image_15.png"),
-            Image.asset("assets/image_15.png"),
-            Image.asset("assets/image_15.png"),
-            Image.asset("assets/image_15.png"),
+             Image.asset("assets/image_15.png"),
+             Image.asset("assets/image_15.png"),
+             Image.asset("assets/image_15.png"),
+             Image.asset("assets/image_15.png"),
             // Image.asset("assets/image_15.png"),
             // Image.asset("assets/image_15.png"),
+            // Image.asset("assets/image_15.png"),
+            Positioned(
+              top: MediaQuery.of(context).size.height - 13,
+              //bottom: MediaQuery.of(context).size.height - 400,
+              child: Image.asset("assets/image_15.png"),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height - 890,
+              //bottom: MediaQuery.of(context).size.height - 400,
+              child: Image.asset("assets/image_15.png"),
+            ),
             Column(
               children: [
                 const SizedBox(
                   height: 150,
                 ),
                 Text(
-                  'Welcome back!',
-                  style: GoogleFonts.lato(
+                  'WelCome BacK!',
+                  style: GoogleFonts.raleway(
                     textStyle: Theme.of(context).textTheme.displayLarge,
                     fontSize: 45,
                     fontWeight: FontWeight.bold,
@@ -60,25 +82,28 @@ class _WelcomescreenState extends State<Welcomescreen> {
                     color: Colors.white,
                   ),
                 ),
-                const Padding(
+                Padding(
                   //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: _emailTextEditingController,
+                   // obscureText: true,//to display keyborad on screen
+                    decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Username',
+                        labelText: 'Email',
                         labelStyle: TextStyle(color: Colors.brown),
-                        hintText: 'Enter valid Username',
+                        hintText: 'Enter valid Email',
                         hintStyle: TextStyle(color: Colors.black)),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(
+                Padding(
+                  padding: const EdgeInsets.only(
                       left: 15.0, right: 15.0, top: 15, bottom: 0),
                   //padding: EdgeInsets.symmetric(horizontal: 15),
                   child: TextField(
+                    controller: _passwordtextEditingController,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Password',
                         hintStyle: TextStyle(color: Colors.black),
@@ -90,10 +115,10 @@ class _WelcomescreenState extends State<Welcomescreen> {
                   height: 50,
                 ),
                 SizedBox(
-                  height: 65,
-                  width: 360,
+                  height: 75,
+                  width: 350,
                   child: Padding(
-                    padding: EdgeInsets.only(top: 20.0),
+                    padding: const EdgeInsets.only(top: 20.0),
                     child: Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -117,16 +142,46 @@ class _WelcomescreenState extends State<Welcomescreen> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              Colors.transparent, // Transparent button
+                          Colors.brown,
+                          //const Color.fromARGB(0, 160, 6, 6), // Transparent button
                           shadowColor:
-                              Colors.transparent, // Remove default shadow
+                          Colors.brown[900], // Remove default shadow
                           shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(12), // Consistent radius
+                            borderRadius: BorderRadius.circular(12), // Consistent radius
                           ),
                         ),
-                        onPressed: () {
-                          print('Login button pressed');
+                        onPressed: () async {
+                          if (_emailTextEditingController.text
+                                  .trim()
+                                  .isNotEmpty &&
+                              _passwordtextEditingController.text
+                                  .trim()
+                                  .isNotEmpty) {
+                            try {
+                              UserCredential userCredential =
+                                  await _firebaseAuth.signInWithEmailAndPassword(
+                                email: _emailTextEditingController.text,
+                                password: _passwordtextEditingController.text,
+                              );
+                              log("C2W :UserCredential:${userCredential.user!.email}");
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return HomeScreen(
+                                      email: userCredential.user!.email!,
+                                    );
+                                  },
+                                ),
+                              );
+                            } on FirebaseAuthException catch (error) {
+                              log("C2W : error : ${error.code}");
+                              log("C2W : error : ${error.message}");
+                              CustomSnackbar.showCustomSnackbar(
+                                message: error.code,
+                                context: context,
+                              );
+                            }
+                          }
                         },
                         child: Text(
                           'Login',
@@ -135,15 +190,43 @@ class _WelcomescreenState extends State<Welcomescreen> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.italic,
-                            color:
-                                Colors.white, // Ensure contrast with gradient
+                            color: Colors.white,
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-
+                const SizedBox(height: 20),
+                Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return const RegisterPage();
+                      }));
+                    },
+                    child: const Text.rich(
+                      TextSpan(
+                        text: "Don't have an account? ",
+                        style: TextStyle(color: Colors.black,fontSize: 22),
+                        
+                        children: [
+                          TextSpan(
+                            text: "Sign up",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 205, 26, 13),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22,
+                            ),
+                            // Add an action here if needed
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+        
                 // SizedBox(
                 //   height: 65,
                 //   width: 360,
@@ -164,21 +247,11 @@ class _WelcomescreenState extends State<Welcomescreen> {
                 //     ),
                 //   ),
                 // ),
-
+        
                 // Center(
                 //   child: Image.asset('assets/Pride Standing.png'),
                 // )
               ],
-            ),
-            Positioned(
-              top: MediaQuery.of(context).size.height - 413,
-              //bottom: MediaQuery.of(context).size.height - 400,
-              child: Image.asset("assets/image_15.png"),
-            ),
-            Positioned(
-              top: MediaQuery.of(context).size.height - 210,
-              //bottom: MediaQuery.of(context).size.height - 400,
-              child: Image.asset("assets/image_15.png"),
             ),
           ],
         ),

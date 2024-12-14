@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String? email;
+  const HomeScreen({super.key,this.email});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -13,6 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Column(
         children: [
+          SizedBox(height: 40,),
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: TextField(

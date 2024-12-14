@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "463124172443",
+    "project_id": "caffe-in-76cfc",
+    "storage_bucket": "caffe-in-76cfc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463124172443:android:f3575496c6a0e35b5e003e",
+        "android_client_info": {
+          "package_name": "com.example.starbucks_in"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrCZXEu-B5wzevQ_P0USzY3f1VlhEGAsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
