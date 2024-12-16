@@ -15,7 +15,7 @@ class NavigationPage extends StatefulWidget {
 class _NavigationPageState extends State<NavigationPage> {
 
   List<Widget> navigationPages=[
-    const SplashScreen(),
+    // const SplashScreen(),
     const HomeScreen(),
     const FavouriteScreen(),
     const CartScreen(),

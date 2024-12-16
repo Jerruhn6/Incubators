@@ -23,12 +23,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: SplashScreen(),
-      //home: Welcomescreen(),
-      //home: RegisterPage(),
-      home: OrdersPage(),
+    //home: SplashScreen(),
+    //home: Welcomescreen(),
+    //home: RegisterPage(),
+    //home: OrdersPage(),
+    //home: NavigationPage(),
+    home: HomeScreen(),
     );
   }
 }
