@@ -4,8 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starbucks_in/customSnackbar.dart';
+// ignore: unused_import
 import 'package:starbucks_in/homeScreen.dart';
-import 'package:starbucks_in/ragister.dart';
+import 'package:starbucks_in/navigator.dart';
+import 'package:starbucks_in/register.dart';
 
 class Welcomescreen extends StatefulWidget {
   const Welcomescreen({super.key});
@@ -167,7 +169,7 @@ class _WelcomescreenState extends State<Welcomescreen> {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return HomeScreen(
+                                    return NavigationPage(
                                       email: userCredential.user!.email!,
                                     );
                                   },

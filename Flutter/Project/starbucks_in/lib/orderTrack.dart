@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starbucks_in/orderStatusDetails.dart';
 
 class OrderTrack extends StatefulWidget {
   const OrderTrack({super.key});
@@ -46,7 +47,13 @@ class _OrderTrackState extends State<OrderTrack> {
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.brown[800],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => OrderStatusDetails()),
+                    );
+                  },
                   child: const Text(
                     'Track Your Order ',
                     style: TextStyle(color: Colors.white, fontSize: 20),

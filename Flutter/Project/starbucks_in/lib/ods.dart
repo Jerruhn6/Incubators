@@ -1,100 +1,108 @@
-// import 'package:flutter/material.dart';
+// final List<Product> products = [
+//   Product(
+//       name: 'Cappuccino',
+//       price: '35',
+//       imagePath:
+//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHuVUzalj8u6ZhME5u5jBmpj3RmqHfoVhe9dt8TLLgBV-_UN7ZuQ2z8ixJpaONvWLFIoc&usqp=CAU'),
+//   Product(
+//       name: 'Latte',
+//       price: '30',
+//       imagePath:
+//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_YMTkc4612BVbFxrUPi7k0qjypWpLlwOVfQ&s'),
+//   Product(
+//       name: 'Espresso',
+//       price: '25',
+//       imagePath:
+//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR29C2VVZ3QGzijZLfVrQs6JX6qoZB52Gg4mA&s'),
+//   Product(
+//       name: 'Mocha',
+//       price: '40',
+//       imagePath:
+//           'https://milkandpop.com/wp-content/uploads/2020/11/mocha-latte-13.jpg'),
+//   Product(
+//       name: 'Macchiato',
+//       price: '38',
+//       imagePath:
+//           'https://img.freepik.com/premium-photo/coffee-latte-macchiato-with-whipped-cream-coffee-beans-glasses-with-delicious-latte-macchiato-with-coffee-ai-generated_538213-3336.jpg'),
+//   Product(
+//       name: 'Flat White',
+//       price: '32',
+//       imagePath:
+//           'https://athome.starbucks.com/sites/default/files/styles/recipe_banner_xlarge/public/2024-05/Flatwhite_RecipeHeader_848x539_%402x.jpg.webp?itok=pY1IvezE'),
+//   Product(
+//       name: 'Americano',
+//       price: '28',
+//       imagePath:
+//           'https://img.freepik.com/premium-photo/classic-americano-coffee-with-milk-gray-background_112304-1304.jpg'),
+//   Product(
+//       name: 'Affogato',
+//       price: '45',
+//       imagePath:
+//           'https://img.freepik.com/premium-photo/affogato-coffee-with-ice-cream-cup_756748-28005.jpg'),
+//   Product(
+//       name: 'Irish Coffee',
+//       price: '50',
+//       imagePath:
+//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRRFJH69N631hJOye4kT1JugZA_IH7mVZtdw&s'),
+//   Product(
+//       name: 'Cold Brew',
+//       price: '35',
+//       imagePath:
+//           'https://s3.amazonaws.com/shecodesio-production/uploads/files/000/108/829/original/cold_brew_coffee_4_%281%29.jpg?1704066531'),
+// ];
 
-// class ProfileScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       bottomNavigationBar: BottomNavigationBar(
-//         currentIndex: 3,
-//         items: [
-//           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-//           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favourite'),
-//           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Cart'),
-//           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-//         ],
-//         selectedItemColor: Colors.orange,
-//         unselectedItemColor: Colors.grey,
-//       ),
-//       body: SafeArea(
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           children: [
-//             SizedBox(height: 20),
-//             CircleAvatar(
-//               radius: 50,
-//               backgroundImage: NetworkImage(
-//                 'https://via.placeholder.com/150', // Replace with the actual image URL
-//               ),
-//             ),
-//             SizedBox(height: 10),
-//             Text(
-//               'Lora Roberts',
-//               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//             ),
-//             IconButton(
-//               icon: Icon(Icons.edit),
-//               onPressed: () {
-//                 // Edit name action
-//               },
-//             ),
-//             SizedBox(height: 20),
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   Text(
-//                     'Settings',
-//                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//                   ),
-//                   ListTile(
-//                     leading: Icon(Icons.phone),
-//                     title: Text('+380483746375'),
-//                     trailing: IconButton(
-//                       icon: Icon(Icons.edit),
-//                       onPressed: () {
-//                         // Edit phone action
-//                       },
-//                     ),
-//                   ),
-//                   ListTile(
-//                     leading: Icon(Icons.location_on),
-//                     title: Text('Ukraine, Ivano-Frankivsk, Kon...'),
-//                     trailing: IconButton(
-//                       icon: Icon(Icons.edit),
-//                       onPressed: () {
-//                         // Edit address action
-//                       },
-//                     ),
-//                   ),
-//                   ListTile(
-//                     leading: Icon(Icons.shopping_cart),
-//                     title: Text('My Cart'),
-//                     trailing: IconButton(
-//                       icon: Icon(Icons.edit),
-//                       onPressed: () {
-//                         // Edit cart action
-//                       },
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             Spacer(),
-//             TextButton.icon(
-//               onPressed: () {
-//                 // Logout action
-//               },
-//               icon: Icon(Icons.logout, color: Colors.orange),
-//               label: Text(
-//                 'Logout',
-//                 style: TextStyle(color: Colors.orange),
-//               ),
-//             ),
-//             SizedBox(height: 20),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+
+// final List<Product> products = [
+//   Product(
+//       name: 'Cappuccino',
+//       price: '35',
+//       imagePath:
+//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHuVUzalj8u6ZhME5u5jBmpj3RmqHfoVhe9dt8TLLgBV-_UN7ZuQ2z8ixJpaONvWLFIoc&usqp=CAU'),
+//   Product(
+//       name: 'Latte',
+//       price: '30',
+//       imagePath:
+//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_YMTkc4612BVbFxrUPi7k0qjypWpLlwOVfQ&s'),
+//   Product(
+//       name: 'Espresso',
+//       price: '25',
+//       imagePath:
+//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR29C2VVZ3QGzijZLfVrQs6JX6qoZB52Gg4mA&s'),
+//   Product(
+//       name: 'Mocha',
+//       price: '40',
+//       imagePath:
+//           'https://milkandpop.com/wp-content/uploads/2020/11/mocha-latte-13.jpg'),
+//   Product(
+//       name: 'Macchiato',
+//       price: '38',
+//       imagePath:
+//           'https://img.freepik.com/premium-photo/coffee-latte-macchiato-with-whipped-cream-coffee-beans-glasses-with-delicious-latte-macchiato-with-coffee-ai-generated_538213-3336.jpg'),
+//   Product(
+//       name: 'Flat White',
+//       price: '32',
+//       imagePath:
+//           'https://athome.starbucks.com/sites/default/files/styles/recipe_banner_xlarge/public/2024-05/Flatwhite_RecipeHeader_848x539_%402x.jpg.webp?itok=pY1IvezE'),
+//   Product(
+//       name: 'Americano',
+//       price: '28',
+//       imagePath:
+//           'https://img.freepik.com/premium-photo/classic-americano-coffee-with-milk-gray-background_112304-1304.jpg'),
+//   Product(
+//       name: 'Affogato',
+//       price: '45',
+//       imagePath:
+//           'https://img.freepik.com/premium-photo/affogato-coffee-with-ice-cream-cup_756748-28005.jpg'),
+//   Product(
+//       name: 'Irish Coffee',
+//       price: '50',
+//       imagePath:
+//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRRFJH69N631hJOye4kT1JugZA_IH7mVZtdw&s'),
+//   Product(
+//       name: 'Cold Brew',
+//       price: '35',
+//       imagePath:
+//           'https://s3.amazonaws.com/shecodesio-production/uploads/files/000/108/829/original/cold_brew_coffee_4_%281%29.jpg?1704066531'),
+// ];
+
+

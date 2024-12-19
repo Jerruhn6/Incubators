@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:starbucks_in/register.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -12,197 +13,145 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: 3,
-      //   items: const [
-      //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.favorite), label: 'Favourite'),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.shopping_cart), label: 'Cart'),
-      //     BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-      //   ],
-      //   selectedItemColor: Colors.orange,
-      //   unselectedItemColor: Colors.grey,
-      // ),
+      appBar: AppBar(
+        title: Text(
+          'Profile',
+          style: GoogleFonts.lato(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.brown[500],
+      ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 20),
-            const CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJQQb_a7dNJkCek_QcPIPlI3ZjqbdRLRAz-Q&s',
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Profile Picture
+              const CircleAvatar(
+                radius: 60,
+                backgroundImage: NetworkImage(
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJQQb_a7dNJkCek_QcPIPlI3ZjqbdRLRAz-Q&s',
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Jerry',
-              style: GoogleFonts.lato(
-                textStyle: Theme.of(context).textTheme.displayLarge,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-                color: Colors.black, 
+              const SizedBox(height: 12),
+              // User Name
+              Text(
+                'Ashish',
+                style: GoogleFonts.lato(
+                  textStyle: Theme.of(context).textTheme.displayLarge,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            IconButton(
-              icon: Icon(Icons.edit_outlined),
-              onPressed: () {
-              
-              },
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Settings',
+              // Edit Button
+              IconButton(
+                icon: const Icon(Icons.edit_outlined, color: Colors.brown),
+                onPressed: () {
+                  // Add edit profile functionality here
+                },
+              ),
+              const SizedBox(height: 20),
+              // Settings Section
+              Expanded(
+                child: ListView(
+                  children: [
+                    _buildSettingTile(
+                      context,
+                      Icons.phone_outlined,
+                      '+919325822114',
+                      'Edit Phone Number',
+                      () {},
+                    ),
+                    _buildSettingTile(
+                      context,
+                      Icons.location_on,
+                      'Ukraine, Ivano-Frankivsk, Kon...',
+                      'Edit Location',
+                      () {},
+                    ),
+
+                    //  Future Scop
+                    // _buildSettingTile(
+                    //   context,
+                    //   Icons.shopping_cart,
+                    //   'My Cart',
+                    //   'Go to Cart',
+                    //   () {
+                    //     // Navigate to cart screen
+                    //   },
+                    //),
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: TextButton.icon(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RegisterPage(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.logout, color: Colors.red),
+                  label: Text(
+                    'Logout',
                     style: GoogleFonts.lato(
-                      textStyle: Theme.of(context).textTheme.displayLarge,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic,
-                      color: Colors.black, 
+                      color: Colors.red,
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 5), 
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey, 
-                        width: 1, 
-                      ),
-                      borderRadius:
-                          BorderRadius.circular(10), 
-                    ),
-                    child: ListTile(
-                      leading: const Icon(Icons.phone_outlined),
-                      title: Text(
-                        '+919325822114',
-                        style: GoogleFonts.lato(
-                          textStyle: Theme.of(context).textTheme.displayLarge,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.italic,
-                          color: Colors.black, 
-                        ),
-                      ),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.edit_outlined),
-                        onPressed: () {
-                          
-                        },
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 5),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey, 
-                        width: 1, 
-                      ),
-                      borderRadius:
-                          BorderRadius.circular(10), 
-                    ),
-                    child: ListTile(
-                      leading: const Icon(Icons.location_on),
-                      title: Text('Ukraine, Ivano-Frankivsk, Kon...',style: GoogleFonts.lato(
-                          textStyle: Theme.of(context).textTheme.displayLarge,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.italic,
-                          color: Colors.black, 
-                        ),),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.edit_outlined),
-                        onPressed: () {
-                        
-                        },
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 5), 
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey, 
-                        width: 1, 
-                      ),
-                      borderRadius:
-                          BorderRadius.circular(10),
-                    ),
-                    child: ListTile(
-                      leading: const Icon(Icons.shopping_cart),
-                      title: Text('My Cart',style: GoogleFonts.lato(
-                          textStyle: Theme.of(context).textTheme.displayLarge,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.italic,
-                          color: Colors.black, 
-                        ),),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.edit_outlined),
-                        onPressed: () {
-                          
-                        },
-                      ),
-                    ),
-                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
-                  // ListTile(
-                  //   leading: Icon(Icons.location_on),
-                  //   title: Text('Ukraine, Ivano-Frankivsk, Kon...'),
-                  //   trailing: IconButton(
-                  //     icon: Icon(Icons.edit),
-                  //     onPressed: () {
-                  //       // Edit address action
-                  //     },
-                  //   ),
-                  // ),
-                  // ListTile(
-                  //   leading: Icon(Icons.shopping_cart),
-                  //   title: Text('My Cart'),
-                  //   trailing: IconButton(
-                  //     icon: Icon(Icons.edit),
-                  //     onPressed: () {
-                  //       // Edit cart action
-                  //     },
-                  //   ),
-                  // ),
-                ],
-              ),
-            ),
-            // Spacer(),
-            const SizedBox(
-              width: 400,
-              height: 30,
-            ),
-            TextButton.icon(
-              onPressed: () {
-                
-              },
-              icon: Icon(Icons.logout, color: Colors.orange),
-              label: Text(
-                'Logout',
-                style: GoogleFonts.lato(
-                          textStyle: Theme.of(context).textTheme.displayLarge,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.italic,
-                          color: Colors.orange, 
-                        ),
-              ),
-            ),
-            SizedBox(height: 20),
-          ],
+  Widget _buildSettingTile(BuildContext context, IconData icon, String title,
+      String actionText, VoidCallback onTap) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            blurRadius: 10,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: ListTile(
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        leading: Icon(icon, color: Colors.brown),
+        title: Text(
+          title,
+          style: GoogleFonts.lato(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
+          ),
+        ),
+        subtitle: Text(
+          actionText,
+          style: GoogleFonts.lato(
+            fontSize: 14,
+            color: Colors.brown,
+          ),
+        ),
+        trailing: IconButton(
+          icon: const Icon(Icons.edit_outlined, color: Colors.brown),
+          onPressed: onTap,
         ),
       ),
     );

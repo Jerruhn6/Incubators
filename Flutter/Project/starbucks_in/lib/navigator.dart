@@ -1,63 +1,78 @@
+// ignore: unused_import
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:starbucks_in/Model/coffee_model.dart';
 import 'package:starbucks_in/cart.dart';
-import 'package:starbucks_in/favouriteScreen.dart';
+import 'package:starbucks_in/favorite_screen.dart';
 import 'package:starbucks_in/homeScreen.dart';
+// ignore: unused_import
+import 'package:starbucks_in/Model/productModel.dart';
+import 'package:starbucks_in/orderStatusDetails.dart';
 import 'package:starbucks_in/profileScreen.dart';
+// ignore: unused_import
 import 'package:starbucks_in/splashScreen.dart';
 
+int cartProductSum = 0;
+List<CoffeeModel> coffeeList = [];
+
 class NavigationPage extends StatefulWidget {
-  const NavigationPage({super.key});
+
+  
+  final String? email;
+  NavigationPage({super.key, this.email});
+  final favoriteItems = coffeeList.where((coffee) => coffee.isFavorite).toList();
+
 
   @override
   State<NavigationPage> createState() => _NavigationPageState();
 }
 
 class _NavigationPageState extends State<NavigationPage> {
+  
 
-  List<Widget> navigationPages=[
+  List<Widget> navigationPages = [
     // const SplashScreen(),
     const HomeScreen(),
-    const FavouriteScreen(),
+    const FavoriteScreen(favoriteItems: [],),
     const CartScreen(),
     const ProfileScreen(),
+    const OrderStatusDetails(),
   ];
-int currentIndex=0;
-@override
+  int currentIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: navigationPages[currentIndex],
       bottomNavigationBar: Container(
-        color: Colors.lightBlueAccent, 
+        color: Colors.lightBlueAccent,
         child: BottomNavigationBar(
           onTap: (value) {
-            
-            currentIndex=value;
-            setState(() {
-              
-            });
+            currentIndex = value;
+            setState(() {});
           },
-          backgroundColor:
-              Colors.transparent, 
+          backgroundColor: Colors.transparent,
           currentIndex: currentIndex,
-          selectedItemColor: Colors.black, 
-          unselectedItemColor: Colors.brown, 
-          items: const [
-            BottomNavigationBarItem(
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.brown,
+          items: [
+            const BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
               label: 'Favourite',
             ),
             BottomNavigationBarItem(
               icon: Badge(
-                label: Text('10'),
-                child: Icon(Icons.shopping_cart),
+                label: Text("$cartProductSum"),
+                child: const Icon(Icons.shopping_cart),
               ),
               label: 'Cart',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'Profile',
             ),

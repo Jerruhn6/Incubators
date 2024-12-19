@@ -67,7 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 30),
               TextField(
-                controller: _emailController,
+                controller: _emailController,style: TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Email',
@@ -78,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 15),
               TextField(
-                controller: _passwordController,
+                controller: _passwordController,style: TextStyle(color: Colors.white),
                 obscureText: true,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -90,7 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 15),
               TextField(
-                controller: _confirmPasswordController,
+                controller: _confirmPasswordController,style: TextStyle(color: Colors.white),
                 obscureText: true,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
