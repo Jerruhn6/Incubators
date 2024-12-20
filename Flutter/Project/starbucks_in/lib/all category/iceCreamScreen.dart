@@ -96,6 +96,14 @@ class _IcecreamscreenState extends State<Icecreamscreen> {
     dynamic product = icecreamList;
     bool isSelected = false;
     return Scaffold(
+      appBar: AppBar(
+         leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new), onPressed: (){
+          Navigator.of(context).pop();
+         },
+        ),
+        // backgroundColor: Colors.brown,
+        // elevation: 0,
+      ),
       body: Column(
         children: [
           const SizedBox(height: 40),

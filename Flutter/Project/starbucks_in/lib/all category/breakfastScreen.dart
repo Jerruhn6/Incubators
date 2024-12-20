@@ -97,6 +97,14 @@ class _BreakfastscreenState extends State<Breakfastscreen> {
     dynamic product = breakFastList;
     bool isSelected = false;
     return Scaffold(
+      appBar: AppBar(
+         leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new), onPressed: (){
+          Navigator.of(context).pop();
+         },
+        ),
+        // backgroundColor: Colors.brown,
+        // elevation: 0,
+      ),
       body: Column(
         children: [
           const SizedBox(height: 40),
@@ -120,12 +128,12 @@ class _BreakfastscreenState extends State<Breakfastscreen> {
                       return const HomeScreen();
                     }));
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Chip(
-                      label: const Text(
+                      label: Text(
                         "COFFEE",
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
                   ),
@@ -140,9 +148,9 @@ class _BreakfastscreenState extends State<Breakfastscreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Chip(
-                      label: Text(
+                      label: const Text(
                         "BREAKFAST",
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black),
                       ),
                       backgroundColor: isSelected ? Colors.brown : Colors.grey,
                     ),
@@ -171,12 +179,12 @@ class _BreakfastscreenState extends State<Breakfastscreen> {
                       return const Icecreamscreen();
                     }));
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Chip(
                       label: Text(
                         "ICECREAM",
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black),
                       ),
                       //backgroundColor: isSelected ? Colors.brown : Colors.grey,
                     ),

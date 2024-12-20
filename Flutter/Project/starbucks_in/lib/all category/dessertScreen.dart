@@ -96,6 +96,14 @@ class _DessertscreenState extends State<Dessertscreen> {
     dynamic product = dessertList;
     bool isSelected = false;
     return Scaffold(
+      appBar: AppBar(
+         leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new), onPressed: (){
+          Navigator.of(context).pop();
+         },
+        ),
+        // backgroundColor: Colors.brown,
+        // elevation: 0,
+      ),
       body: Column(
         children: [
           const SizedBox(height: 40),

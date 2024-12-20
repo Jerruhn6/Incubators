@@ -5,8 +5,6 @@ import 'package:starbucks_in/Model/coffee_model.dart';
 final List<dynamic> favoriteItems = [];
 
 class FavoriteScreen extends StatelessWidget {
-  
-
   const FavoriteScreen({super.key});
 
   @override

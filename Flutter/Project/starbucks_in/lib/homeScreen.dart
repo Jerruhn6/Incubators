@@ -214,9 +214,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 GestureDetector(
+                  //---------------niketan-----------
                   onTap: () {
                     
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
                       return const Breakfastscreen();
                     }));
 
@@ -235,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 GestureDetector(
                   onTap: () {
                     
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
                       return const Dessertscreen();
                     }));
                   },
@@ -253,16 +254,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 GestureDetector(
                   onTap: () {
                    
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
                       return const Icecreamscreen();
                     }));
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Chip(
                       label: Text(
                         "ICECREAM",
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black),
                       ),
                       //backgroundColor: isSelected ? Colors.brown : Colors.grey,
                     ),
