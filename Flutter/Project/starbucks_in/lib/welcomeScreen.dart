@@ -25,8 +25,8 @@ class _WelcomescreenState extends State<Welcomescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.errorContainer,
-      //backgroundColor: Colors.white,
+     // backgroundColor: Theme.of(context).colorScheme.errorContainer,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -50,7 +50,7 @@ class _WelcomescreenState extends State<Welcomescreen> {
             Column(
               children: [
                 const SizedBox(
-                  height: 150,
+                  height: 220,
                 ),
                 Text(
                   'WelCome BacK!',

@@ -4,7 +4,7 @@ import 'package:starbucks_in/Model/productModel.dart';
 import 'package:starbucks_in/cart.dart';
 
 class ProductInfoScreen extends StatefulWidget {
-  final CoffeeModel product;
+  final dynamic product;
 
   const ProductInfoScreen({Key? key, required this.product}) : super(key: key);
 

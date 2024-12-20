@@ -2,6 +2,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:starbucks_in/Model/coffee_model.dart';
+import 'package:starbucks_in/all%20category/breakfastScreen.dart';
+import 'package:starbucks_in/all%20category/dessertScreen.dart';
+import 'package:starbucks_in/all%20category/iceCreamScreen.dart';
 import 'package:starbucks_in/cart.dart';
 import 'package:starbucks_in/favorite_screen.dart';
 import 'package:starbucks_in/homeScreen.dart';
@@ -32,11 +35,16 @@ class _NavigationPageState extends State<NavigationPage> {
 
   List<Widget> navigationPages = [
     // const SplashScreen(),
-    const HomeScreen(),
-    const FavoriteScreen(favoriteItems: [],),
+    const HomeScreen(
+      
+    ),
+    const FavoriteScreen(),
     const CartScreen(),
     const ProfileScreen(),
     const OrderStatusDetails(),
+    const Dessertscreen(),
+    const Icecreamscreen(),
+    const Breakfastscreen()
   ];
   int currentIndex = 0;
 

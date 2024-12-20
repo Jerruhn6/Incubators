@@ -95,6 +95,15 @@ class PaymentScreen extends StatelessWidget {
                         );
                       },
                     ),
+                    PaymentMethodTile(
+                      icon: Icons.money_sharp,
+                      title: 'Cash on delivery',
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Cash on delivery')),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),

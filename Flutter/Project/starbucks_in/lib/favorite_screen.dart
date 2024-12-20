@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:starbucks_in/Model/coffee_model.dart';
 //import 'coffee_model.dart';
 
-class FavoriteScreen extends StatelessWidget {
-  final List<CoffeeModel> favoriteItems;
+final List<dynamic> favoriteItems = [];
 
-  const FavoriteScreen({super.key, required this.favoriteItems});
+class FavoriteScreen extends StatelessWidget {
+  
+
+  const FavoriteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

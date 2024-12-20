@@ -1,5 +1,3 @@
-// ignore_for_file: unused_import
-
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -9,79 +7,23 @@ import 'package:starbucks_in/Model/dessert_model.dart';
 import 'package:starbucks_in/Model/icecram_model.dart';
 import 'package:starbucks_in/all%20category/breakfastScreen.dart';
 import 'package:starbucks_in/all%20category/dessertScreen.dart';
-import 'package:starbucks_in/all%20category/iceCreamScreen.dart';
 import 'package:starbucks_in/cart.dart';
-import 'package:starbucks_in/favorite_screen.dart';
+import 'package:starbucks_in/homeScreen.dart';
 import 'package:starbucks_in/navigator.dart';
 import 'package:starbucks_in/Model/productModel.dart';
 import 'package:starbucks_in/productInfoScreen.dart';
 
-// final List<Product> products = [
-//   Product(
-//       name: 'Cappuccino',
-//       price: '35',
-//       imagePath:
-//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHuVUzalj8u6ZhME5u5jBmpj3RmqHfoVhe9dt8TLLgBV-_UN7ZuQ2z8ixJpaONvWLFIoc&usqp=CAU'),
-//   Product(
-//       name: 'Latte',
-//       price: '30',
-//       imagePath:
-//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_YMTkc4612BVbFxrUPi7k0qjypWpLlwOVfQ&s'),
-//   Product(
-//       name: 'Espresso',
-//       price: '25',
-//       imagePath:
-//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR29C2VVZ3QGzijZLfVrQs6JX6qoZB52Gg4mA&s'),
-//   Product(
-//       name: 'Mocha',
-//       price: '40',
-//       imagePath:
-//           'https://milkandpop.com/wp-content/uploads/2020/11/mocha-latte-13.jpg'),
-//   Product(
-//       name: 'Macchiato',
-//       price: '38',
-//       imagePath:
-//           'https://img.freepik.com/premium-photo/coffee-latte-macchiato-with-whipped-cream-coffee-beans-glasses-with-delicious-latte-macchiato-with-coffee-ai-generated_538213-3336.jpg'),
-//   Product(
-//       name: 'Flat White',
-//       price: '32',
-//       imagePath:
-//           'https://athome.starbucks.com/sites/default/files/styles/recipe_banner_xlarge/public/2024-05/Flatwhite_RecipeHeader_848x539_%402x.jpg.webp?itok=pY1IvezE'),
-//   Product(
-//       name: 'Americano',
-//       price: '28',
-//       imagePath:
-//           'https://img.freepik.com/premium-photo/classic-americano-coffee-with-milk-gray-background_112304-1304.jpg'),
-//   Product(
-//       name: 'Affogato',
-//       price: '45',
-//       imagePath:
-//           'https://img.freepik.com/premium-photo/affogato-coffee-with-ice-cream-cup_756748-28005.jpg'),
-//   Product(
-//       name: 'Irish Coffee',
-//       price: '50',
-//       imagePath:
-//           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRRFJH69N631hJOye4kT1JugZA_IH7mVZtdw&s'),
-//   Product(
-//       name: 'Cold Brew',
-//       price: '35',
-//       imagePath:
-//           'https://s3.amazonaws.com/shecodesio-production/uploads/files/000/108/829/original/cold_brew_coffee_4_%281%29.jpg?1704066531'),
-// ];
-
 final List<Product> products = [];
 
-class HomeScreen extends StatefulWidget {
-  
-
+class Icecreamscreen extends StatefulWidget {
   final String? email;
-  const HomeScreen({super.key, this.email});
+  const Icecreamscreen({super.key, this.email});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Icecreamscreen> createState() => _IcecreamscreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _IcecreamscreenState extends State<Icecreamscreen> {
   // dynamic product;
   List<BreakfastModel> breakFastList = [];
   List<CoffeeModel> coffeeList = [];
@@ -90,12 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-      
     Future.delayed(const Duration(seconds: 0), () async {
-      await getCoffeeListFromFirebase();
-      await getBreakfastListFromFirebase();
+      await getIceCreamListFromFirebase();
     });
-   super.initState();
+    super.initState();
 
     // product data added to firebase firestore
 
@@ -111,38 +51,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
 //--------------------get cofee list-----------------//
-  Future<void> getCoffeeListFromFirebase() async {
-    coffeeList.clear();
-    QuerySnapshot responce =
-        await FirebaseFirestore.instance.collection("COFFEE").get();
-    for (var value in responce.docs) {
-      //log("Value:${value['title']}");
-      // log("NAME :- ${value['name']}");
-      coffeeList.add(
-        CoffeeModel(
-            name: value['name'],
-            price: value['price'],
-            image_path: value['image_path']),
-      );
-    }
-   // product= coffeeList;
-    log("coffeeList in function Lenght:${coffeeList.length}");
-    setState(() {
-      
-    });
-  }
-  
 
 //--------------------get BreakfastListFromFirebase-----------------//
-  Future<void> getBreakfastListFromFirebase() async {
+  Future<void> getIceCreamListFromFirebase() async {
     breakFastList.clear();
     QuerySnapshot responce =
-        await FirebaseFirestore.instance.collection("BREAKFAST").get();
+        await FirebaseFirestore.instance.collection("ICECREAM").get();
     for (var value in responce.docs) {
       //log("Value:${value['title']}");
       // log("NAME :- ${value['name']}");
-      breakFastList.add(
-        BreakfastModel(
+      icecreamList.add(
+        IcecreamModel(
             name: value['name'],
             price: value['price'],
             image_path: value['image_path']),
@@ -174,8 +93,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    dynamic product=coffeeList;
-     bool isSelected=false;
+    dynamic product = icecreamList;
+    bool isSelected = false;
     return Scaffold(
       body: Column(
         children: [
@@ -193,40 +112,34 @@ class _HomeScreenState extends State<HomeScreen> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                 
                 GestureDetector(
-                   
                   onTap: () {
-                    isSelected = true;
-                    setState(() {
-                      
-                    });
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                      return const HomeScreen();
+                    }));
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Chip(
-                      label: const Text(
+                      label: Text(
                         "COFFEE",
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black),
                       ),
-                      backgroundColor: isSelected ? Colors.brown : Colors.grey,
                     ),
                   ),
                 ),
                 GestureDetector(
                   onTap: () {
-                    
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
                       return const Breakfastscreen();
                     }));
-
                   },
                   child: const Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Chip(
                       label: Text(
                         "BREAKFAST",
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black),
                       ),
                       //backgroundColor: isSelected ? Colors.brown : Colors.grey,
                     ),
@@ -234,17 +147,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
                       return const Dessertscreen();
                     }));
                   },
                   child: const Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Chip(
                       label: Text(
                         "DESSERT",
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black),
                       ),
                       //backgroundColor: isSelected ? Colors.brown : Colors.grey,
                     ),
@@ -252,7 +164,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                   
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
                       return const Icecreamscreen();
                     }));
@@ -260,15 +171,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Chip(
-                      label: Text(
+                      label: const Text(
                         "ICECREAM",
-                        style: const TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black),
                       ),
-                      //backgroundColor: isSelected ? Colors.brown : Colors.grey,
+                      backgroundColor: isSelected ? Colors.brown : Colors.grey,
                     ),
                   ),
                 ),
-
 
                 // _buildCategoryChip('COFFEE', true),
                 //  _buildCategoryChip('BREAKFAST', false),
@@ -286,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisSpacing: 10,
                 childAspectRatio: 0.75,
               ),
-              itemCount:product.length,
+              itemCount: product.length,
               itemBuilder: (context, index) {
                 //final products = product[index];
                 return _buildCoffeeGridItem(product[index]);
@@ -363,12 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       //final List<CoffeeModel> favoriteItems = [];
                       onPressed: () {
-                         setState(() {
-                          favoriteItems.add(Product(
-                          name: product.name,
-                          price: product.price,
-                          image_path: product.image_path,
-                        ));
+                        setState(() {
                           product.isFavorite = !product.isFavorite;
                         });
                       },
