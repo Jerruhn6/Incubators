@@ -25,8 +25,17 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Order'),
-        actions: const [Icon(Icons.local_shipping)],
+        title: Text(
+          'Cart',
+          style: GoogleFonts.lato(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        //centerTitle: true,
+        backgroundColor: Colors.brown[600],
+        elevation: 5,
       ),
       body: Column(
         children: [

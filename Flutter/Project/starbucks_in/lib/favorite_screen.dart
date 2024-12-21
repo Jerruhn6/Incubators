@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:starbucks_in/Model/coffee_model.dart';
 //import 'coffee_model.dart';
 
@@ -10,10 +11,19 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Favorites'),
-      //   //backgroundColor: Colors.brown,
-      // ),
+      appBar: AppBar(
+        title: Text(
+          'Favourite',
+          style: GoogleFonts.lato(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        //centerTitle: true,
+        backgroundColor: Colors.brown[600],
+        elevation: 5,
+      ),
       body: favoriteItems.isEmpty
           ? const Center(
               child: Text('No Favorites yet!',
