@@ -3,11 +3,14 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:starbucks_in/cart.dart';
 import 'package:starbucks_in/customSnackbar.dart';
 // ignore: unused_import
-import 'package:starbucks_in/homeScreen.dart';
+import 'package:starbucks_in/View/commanScreen.dart';
+import 'package:starbucks_in/favorite_screen.dart';
 import 'package:starbucks_in/navigator.dart';
 import 'package:starbucks_in/register.dart';
+import 'package:starbucks_in/session.dart';
 
 class Welcomescreen extends StatefulWidget {
   const Welcomescreen({super.key});
@@ -17,6 +20,7 @@ class Welcomescreen extends StatefulWidget {
 }
 
 class _WelcomescreenState extends State<Welcomescreen> {
+ 
   final TextEditingController _emailTextEditingController =
       TextEditingController();
   final TextEditingController _passwordtextEditingController =
@@ -25,28 +29,26 @@ class _WelcomescreenState extends State<Welcomescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     // backgroundColor: Theme.of(context).colorScheme.errorContainer,
+      // backgroundColor: Theme.of(context).colorScheme.errorContainer,
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Stack(
           children: [
-             Image.asset("assets/image_15.png"),
-             Image.asset("assets/image_15.png"),
-             Image.asset("assets/image_15.png"),
-             Image.asset("assets/image_15.png"),
+            Positioned(
+              top: 0,
+              child: Image.asset("assets/image_15.png",)),
+            Image.asset("assets/image_15.png"),
+            Image.asset("assets/image_15.png"),
+            Image.asset("assets/image_15.png"),
             // Image.asset("assets/image_15.png"),
             // Image.asset("assets/image_15.png"),
             // Image.asset("assets/image_15.png"),
             Positioned(
-              top: MediaQuery.of(context).size.height - 13,
+              top: 0,
               //bottom: MediaQuery.of(context).size.height - 400,
               child: Image.asset("assets/image_15.png"),
             ),
-            Positioned(
-              top: MediaQuery.of(context).size.height - 890,
-              //bottom: MediaQuery.of(context).size.height - 400,
-              child: Image.asset("assets/image_15.png"),
-            ),
+            
             Column(
               children: [
                 const SizedBox(
@@ -89,7 +91,7 @@ class _WelcomescreenState extends State<Welcomescreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: TextField(
                     controller: _emailTextEditingController,
-                   // obscureText: true,//to display keyborad on screen
+                    // obscureText: true,//to display keyborad on screen
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Email',
@@ -143,13 +145,13 @@ class _WelcomescreenState extends State<Welcomescreen> {
                       ),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                          Colors.brown,
+                          backgroundColor: Colors.brown,
                           //const Color.fromARGB(0, 160, 6, 6), // Transparent button
                           shadowColor:
-                          Colors.brown[900], // Remove default shadow
+                              Colors.brown[900], // Remove default shadow
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12), // Consistent radius
+                            borderRadius:
+                                BorderRadius.circular(12), // Consistent radius
                           ),
                         ),
                         onPressed: () async {
@@ -160,17 +162,24 @@ class _WelcomescreenState extends State<Welcomescreen> {
                                   .trim()
                                   .isNotEmpty) {
                             try {
-                              UserCredential userCredential =
-                                  await _firebaseAuth.signInWithEmailAndPassword(
+                            UserCredential userCredential =
+                                  await _firebaseAuth
+                                      .signInWithEmailAndPassword(
                                 email: _emailTextEditingController.text,
                                 password: _passwordtextEditingController.text,
                               );
                               log("C2W :UserCredential:${userCredential.user!.email}");
+                                await SessionData.storeSessionData(
+                        loginData: true,
+                        emailId: userCredential.user!.email!,
+                      );
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return NavigationPage(
-                                      email: userCredential.user!.email!,
+                                    return AnimatedNavbar(
+                                      basketCount:basketList.length,
+                                      favCount: wishlist.length,
+                                      // email: userCredential.user!.email!,
                                     );
                                   },
                                 ),
@@ -202,7 +211,8 @@ class _WelcomescreenState extends State<Welcomescreen> {
                 const SizedBox(height: 20),
                 Center(
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                    
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         return const RegisterPage();
@@ -211,8 +221,7 @@ class _WelcomescreenState extends State<Welcomescreen> {
                     child: const Text.rich(
                       TextSpan(
                         text: "Don't have an account? ",
-                        style: TextStyle(color: Colors.black,fontSize: 22),
-                        
+                        style: TextStyle(color: Colors.black, fontSize: 22),
                         children: [
                           TextSpan(
                             text: "Sign up",
@@ -228,7 +237,7 @@ class _WelcomescreenState extends State<Welcomescreen> {
                     ),
                   ),
                 ),
-        
+
                 // SizedBox(
                 //   height: 65,
                 //   width: 360,
@@ -249,7 +258,7 @@ class _WelcomescreenState extends State<Welcomescreen> {
                 //     ),
                 //   ),
                 // ),
-        
+
                 // Center(
                 //   child: Image.asset('assets/Pride Standing.png'),
                 // )

@@ -1,0 +1,334 @@
+//--------------------------------------------new------------------------------------------//
+
+import 'dart:developer';
+
+import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:starbucks_in/Model/breakfast_model.dart';
+import 'package:starbucks_in/Model/coffee_model.dart';
+import 'package:starbucks_in/Model/dessert_model.dart';
+import 'package:starbucks_in/Model/favModel.dart';
+
+import 'package:starbucks_in/Model/icecram_model.dart';
+
+import 'package:starbucks_in/View/commanScreen.dart';
+import 'package:starbucks_in/cart.dart';
+import 'package:starbucks_in/favorite_screen.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+
+
+dynamic cartProducts;
+dynamic favoriteItems;
+
+List<Map<String, dynamic>>? list2;
+String? appBarTitle;
+
+class HomeScreen extends StatefulWidget {
+  final NotchBottomBarController? controller;
+  final String? email;
+  const HomeScreen({super.key, this.email, this.controller});
+
+  @override
+  State<HomeScreen> createState() => _SofaScreenState();
+}
+
+class _SofaScreenState extends State<HomeScreen> {
+  bool changeColour = false;
+
+  final Set<int> favoriteIndices = {};
+  final Set<int> basketIndices = {};
+  QuerySnapshot? response;
+
+  List<BreakfastModel> breakFastList = [];
+  List<CoffeeModel> coffeeList = [];
+  List<DessertModel> dessertList = [];
+  List<IcecreamModel> icecreamList = [];
+
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 0), () async {
+      await getCoffeeListFromFirebase();
+      await getBreakfastListFromFirebase();
+      await getIceCreamListFromFirebase();
+      await getDessertListFromFirebase();
+
+      await getFavListFromFirebase();
+      await getCartListFromFirebase();
+    });
+    super.initState();
+  }
+
+//--------------------get cofee list-----------------//
+  Future<void> getCoffeeListFromFirebase() async {
+    coffeeList.clear();
+    QuerySnapshot responce =
+        await FirebaseFirestore.instance.collection("COFFEE").get();
+    for (var value in responce.docs) {
+      //log("Value:${value['title']}");
+      // log("NAME :- ${value['name']}");
+      coffeeList.add(
+        CoffeeModel(
+            name: value['name'],
+            price: value['price'],
+            image_path: value['image_path']),
+      );
+    }
+    // product= coffeeList;
+    log("coffeeList in function Lenght:${coffeeList.length}");
+    setState(() {});
+  }
+
+//--------------------get BreakfastListFromFirebase-----------------//
+  Future<void> getBreakfastListFromFirebase() async {
+    breakFastList.clear();
+    QuerySnapshot responce =
+        await FirebaseFirestore.instance.collection("BREAKFAST").get();
+    for (var value in responce.docs) {
+      //log("Value:${value['title']}");
+      // log("NAME :- ${value['name']}");
+      breakFastList.add(
+        BreakfastModel(
+            name: value['name'],
+            price: value['price'],
+            image_path: value['image_path']),
+      );
+    }
+    log("BreakfastList in function Lenght:${breakFastList.length}");
+    setState(() {});
+  }
+
+  //--------------------get DessertFromFirebase-----------------//
+  Future<void> getDessertListFromFirebase() async {
+    dessertList.clear();
+    QuerySnapshot responce =
+        await FirebaseFirestore.instance.collection("DESSERT").get();
+    for (var value in responce.docs) {
+      //log("Value:${value['title']}");
+      // log("NAME :- ${value['name']}");
+      dessertList.add(
+        DessertModel(
+            name: value['name'],
+            price: value['price'],
+            image_path: value['image_path']),
+      );
+    }
+    log("BreakfastList in function Lenght:${breakFastList.length}");
+    setState(() {});
+  }
+
+//--------------------get BreakfastListFromFirebase-----------------//
+  Future<void> getIceCreamListFromFirebase() async {
+    breakFastList.clear();
+    QuerySnapshot responce =
+        await FirebaseFirestore.instance.collection("ICECREAM").get();
+    for (var value in responce.docs) {
+      //log("Value:${value['title']}");
+      // log("NAME :- ${value['name']}");
+      icecreamList.add(
+        IcecreamModel(
+            name: value['name'],
+            price: value['price'],
+            image_path: value['image_path']),
+      );
+    }
+    log("BreakfastList in function Lenght:${breakFastList.length}");
+    setState(() {});
+  }
+
+  //---------------------get fav list --------------------------------//
+
+  Future<void> getFavListFromFirebase() async {
+    favoriteItems.clear();
+    QuerySnapshot responce =
+        await FirebaseFirestore.instance.collection("favourites").get();
+    for (var value in responce.docs) {
+      //log("Value:${value['title']}");
+      // log("NAME :- ${value['name']}");
+      favoriteItems.add(
+        FavModel(
+            productName: value['productDes'],
+            productPrice: value['productPrice'],
+            productImage: value['productImage']),
+      );
+    }
+    // product= coffeeList;
+
+    setState(() {});
+  }
+
+  //---------------------get fav list --------------------------------//
+
+  Future<void> getCartListFromFirebase() async {
+    cartProducts.clear();
+    QuerySnapshot responce =
+        await FirebaseFirestore.instance.collection("basket").get();
+    for (var value in responce.docs) {
+      //log("Value:${value['title']}");
+      // log("NAME :- ${value['name']}");
+      cartProducts.add(
+        FavModel(
+            productName: value['productDes'],
+            productPrice: value['productPrice'],
+            productImage: value['productImage']),
+      );
+    }
+    // product= coffeeList;
+
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<dynamic> allLists = [
+      coffeeList,
+      breakFastList,
+      icecreamList,
+      dessertList
+    ];
+    List<Map<String, dynamic>> categoryNames = [
+      {"name": "COFFEE", "image_url": "assets/coffee.jpg"},
+      {"name": "BREAKFAST", "image_url": "assets/breakfast.jpg"},
+      {"name": "ICECREAM", "image_url": "assets/icecream2.jpg"},
+      {"name": "DESSERT", "image_url": "assets/dessert.jpg"},
+    ];
+    dynamic products = coffeeList;
+    bool isSelected = false;
+    return Scaffold(
+      // backgroundColor: Colors.brown[100],
+      appBar: AppBar(
+        title: Text(
+          "CAFE-IN",
+          style: GoogleFonts.quicksand(
+            color: Colors.white,
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+        leading: const Icon(
+          Icons.menu,
+          size: 26,
+          color: Colors.white,
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.search,
+              color: Colors.white,
+              size: 28,
+            ),
+          ),
+          SizedBox(
+            width: 5,
+          )
+        ],
+        //centerTitle: true,
+        backgroundColor: Colors.brown,
+        elevation: 2,
+      ),
+      // onPressed: () {},
+
+      body: Stack(
+        children: [
+          Positioned(
+              top: 0,
+              child: Image.asset(
+                "assets/bg.jpg",
+              )),
+          Center(
+            child: GridView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 85),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.7,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+              ),
+              itemCount: 4,
+              itemBuilder: (context, index) {
+                // return buildUnifiedContainer(product);
+                return GestureDetector(
+                  onTap: () {
+                    log("in Comman Screen Container Tab");
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (conext) {
+                      return Commanscreen(
+                          list: allLists[index],
+                          title: categoryNames[index]["name"]);
+                    }));
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) {
+                    //   //return SofaScreen();
+                    //   return ProductDetailsScreen(
+                    //     title: product.name,
+                    //     price: product.price,
+                    //     image: product.image_path,
+                    //   );
+                    // }));
+                  },
+                  child: Container(
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Container(
+                          clipBehavior: Clip.antiAlias,
+                          decoration: const BoxDecoration(),
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                categoryNames[index]["image_url"],
+                                height: 192,
+                                //height: MediaQuery.of(context).size.height * 0.18,
+                                width: MediaQuery.of(context).size.width * 0.5,
+                                fit: BoxFit.fill,
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Price and title
+
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 50,
+                                alignment: Alignment.center,
+                                decoration: const BoxDecoration(
+                                  color: Colors.brown,
+                                ),
+                                child: Text(
+                                  categoryNames[index]["name"],
+                                  style: GoogleFonts.quicksand(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

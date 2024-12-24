@@ -310,8 +310,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: Text(
           'Profile',
           style: GoogleFonts.lato(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
+            fontSize: 26,
+            fontWeight: FontWeight.w800,
             color: Colors.white,
           ),
         ),

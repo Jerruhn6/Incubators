@@ -2,7 +2,10 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:starbucks_in/homeScreen.dart';
+import 'package:starbucks_in/View/commanScreen.dart';
+import 'package:starbucks_in/View/homeScreen.dart';
+import 'package:starbucks_in/cart.dart';
+import 'package:starbucks_in/favorite_screen.dart';
 // ignore: unused_import
 import 'package:starbucks_in/navigator.dart';
 import 'package:starbucks_in/Model/productModel.dart';
@@ -14,56 +17,33 @@ class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   void navigate(BuildContext context) {
-    log("NAVIGATE METHOD");
-    //  log(" EMAIL DATA ${SessionData.emailId!}");
-
-    // transfer into login page (login successful hoil na tithe takne)
-    Future.delayed(Duration.zero, () async {
-      QuerySnapshot<Map<String, dynamic>> records =
-          await FirebaseFirestore.instance.collection("products").get();
-      for (var data in records.docs) {
-        products.add(
-          Product(
-            name: data.data()['name'],
-            price: data.data()['price'],
-            image_path: data.data()['imagePath'],
-          ),
-        );
-      }
-    });
-
-    Future.delayed(const Duration(seconds: 3), () async {
-      log("NAVIGATE METHODS");
-
-      // ignore: unused_local_variable
-      //  bool status=false;
-
-      //  await SessionData.getSessionData();
-
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) {
-        return const Welcomescreen();
-      }));
-
-      // if(SessionData.isLogin!){
-      //   log("Screen");
-
-      // }
-      // else{
-      //   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)
-      //   {
-      //     return Welcomescreen();
-      //   }
-      //   ));
-      // }
-      // Navigator.of(context).pushReplacement(
-      //   MaterialPageRoute(
-      //     builder: (context) {
-      //       return const WelcomeScreen();
-      //     },
-      //   ),
-      // );
-    });
+    Future.delayed(
+      const Duration(seconds: 2),
+      () async {
+        bool status = false;
+        await SessionData.getSessionData();
+        print("IS LOGIN : ${SessionData.isLogin}");
+        if (SessionData.isLogin!) {
+          print("NAVIGATE TO HOME");
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) {
+                return AnimatedNavbar(basketCount: wishlist.length, favCount:basketList.length);
+              },
+            ),
+          );
+        } else {
+          print("NAVIGATE TO LOGIN");
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) {
+                return const Welcomescreen();
+              },
+            ),
+          );
+        }
+      },
+    );
   }
 
   @override

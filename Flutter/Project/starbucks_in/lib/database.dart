@@ -1,57 +1,122 @@
+import 'dart:developer';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:starbucks_in/Model/coffee_model.dart';
+dynamic coffee;
 class DatabaseHelper {
-  static const _databaseName = "profile.db";
-  static const _databaseVersion = 1;
-
-  static const table = 'user_profile';
-
-  static const columnId = '_id';
-  static const columnName = 'name';
-  static const columnPhone = 'phone';
-  static const columnAddress = 'address';
-
   static Database? _database;
 
-  DatabaseHelper._privateConstructor();
-  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
-
-  Future<Database> get database async {
+  /// Initialize the SQLite database
+  static Future<Database> initializeDatabase() async {
+    log("initial");
     if (_database != null) return _database!;
-    _database = await _initDatabase();
+
+    _database = await openDatabase(
+      join(await getDatabasesPath(), 'transactions.db'),
+      version: 2,
+      onUpgrade: (db, oldVersion, newVersion) {
+        if (oldVersion < 2) {
+          db.execute('ALTER TABLE transactions ADD COLUMN timestamp TEXT');
+        }
+      },
+      onCreate: (db, version) {
+        return db.execute(
+          'CREATE TABLE transactions('
+          'id INTEGER PRIMARY KEY AUTOINCREMENT,'
+          'name TEXT NOT NULL,'
+          'price INTEGER NOT NULL,'
+          'path TEXT NOT NULL)'
+        );
+      },
+    );
+
     return _database!;
   }
 
-  Future<Database> _initDatabase() async {
-    final databasePath = await getDatabasesPath();
-    final path = join(databasePath, _databaseName);
-
-    return await openDatabase(path, version: _databaseVersion, onCreate: _onCreate);
+  /// Save an image to local storage and return its file path
+  static Future<String> saveImageLocally(String imageUrl, String imageName) async {
+    final response = await http.get(Uri.parse(imageUrl));
+    if (response.statusCode == 200) {
+      final directory = await getApplicationDocumentsDirectory();
+      final imagePath = join(directory.path, '$imageName.jpg');
+      final file = File(imagePath);
+      await file.writeAsBytes(response.bodyBytes);
+      return imagePath;
+    } else {
+      throw Exception('Failed to download image');
+    }
   }
 
-  Future<void> _onCreate(Database db, int version) async {
-    await db.execute('''
-      CREATE TABLE $table (
-        $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
-        $columnName TEXT NOT NULL,
-        $columnPhone TEXT NOT NULL,
-        $columnAddress TEXT NOT NULL
-      )
-    ''');
+  /// Fetch Firestore data, save images locally, and store details in SQLite
+  static Future<void> fetchAndSaveFirestoreData(String collectionName) async {
+    QuerySnapshot responce =
+        await FirebaseFirestore.instance.collection("COFFEE").get();
+    for (var value in responce.docs) {
+      //log("Value:${value['title']}");
+      // log("NAME :- ${value['name']}");
+      coffee.add(
+        CoffeeModel(
+            name: value['name'],
+            price: value['price'],
+            image_path: value['image_path']),
+      );
+
+      try {
+        final localImagePath = await saveImageLocally(coffee.image_path, coffee.name);
+        Database db = await initializeDatabase();
+        await db.insert(
+          'transactions',
+          {
+            'name': coffee.name,
+            'price': coffee.price,
+            'path': localImagePath,
+          },
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+      } catch (e) {
+        print('Error saving image or transaction: $e');
+      }
+    }
   }
 
-  // Insert or update user profile
-  Future<int> insertOrUpdate(Map<String, dynamic> row) async {
-    final db = await database;
-    return await db.insert(table, row, conflictAlgorithm: ConflictAlgorithm.replace);
+  /// Fetch all transactions from SQLite
+  static Future<List<Map<String, dynamic>>> fetchAllTransactions() async {
+    final db = await initializeDatabase();
+    return await db.query('transactions', orderBy: 'name ASC');
   }
 
-  // Fetch the user profile
-  Future<Map<String, dynamic>?> getUserProfile() async {
-    final db = await database;
-    final result = await db.query(table, limit: 1);
-    if (result.isNotEmpty) return result.first;
-    return null;
+  /// Fetch a transaction by name from SQLite
+  static Future<Map<String, dynamic>?> fetchTransactionByName(String name) async {
+    final db = await initializeDatabase();
+    final results = await db.query(
+      'transactions',
+      where: 'name = ?',
+      whereArgs: [name],
+    );
+
+    if (results.isNotEmpty) {
+      return results.first;
+    } else {
+      return null;
+    }
   }
+
+  /// Clear all transactions from the SQLite database
+  static Future<void> clearTransactions() async {
+    final db = await initializeDatabase();
+    await db.delete('transactions');
+  }
+}
+
+Future<void> loadAllCategoriesFromFirebase() async {
+  await DatabaseHelper.fetchAndSaveFirestoreData('COFFEE');
+  await DatabaseHelper.fetchAndSaveFirestoreData('ICECREAM');
+  await DatabaseHelper.fetchAndSaveFirestoreData('BREAKFAST');
+  await DatabaseHelper.fetchAndSaveFirestoreData('DESERT');
+
+  print('All categories loaded from Firebase and saved to SQLite.');
 }
