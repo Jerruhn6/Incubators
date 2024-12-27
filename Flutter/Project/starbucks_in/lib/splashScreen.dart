@@ -12,6 +12,7 @@ import 'package:starbucks_in/Model/productModel.dart';
 // ignore: unused_import
 import 'package:starbucks_in/session.dart';
 import 'package:starbucks_in/welcomeScreen.dart';
+import 'package:starbucks_in/welcome_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -37,7 +38,7 @@ class SplashScreen extends StatelessWidget {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (context) {
-                return const Welcomescreen();
+                return const WelcomeScreen();
               },
             ),
           );

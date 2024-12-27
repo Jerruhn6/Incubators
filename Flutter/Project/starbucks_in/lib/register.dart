@@ -1,3 +1,4 @@
+/*
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -129,7 +130,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 //  backgroundColor:WidgetStatePropertyAll(),
                 ),
                 onPressed: () {
-                  Navigator.pop(context); 
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                    return const Welcomescreen();
+                  })); 
                 },
                 child: Text(
                   'Already have an account? Log in here',
@@ -193,3 +196,4 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 }
+*/

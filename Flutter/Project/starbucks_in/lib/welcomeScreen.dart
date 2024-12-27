@@ -1,3 +1,4 @@
+/*
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,19 +35,20 @@ class _WelcomescreenState extends State<Welcomescreen> {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Positioned(
-              top: 0,
-              child: Image.asset("assets/image_15.png",)),
-            Image.asset("assets/image_15.png"),
-            Image.asset("assets/image_15.png"),
-            Image.asset("assets/image_15.png"),
+            // Positioned(
+            //   top: 0,
+            //   child: Image.asset("assets/image_15.png",),),
+            // Image.asset("assets/image_15.png"),
+            // Image.asset("assets/image_15.png"),
+            // Image.asset("assets/image_15.png"),
             // Image.asset("assets/image_15.png"),
             // Image.asset("assets/image_15.png"),
             // Image.asset("assets/image_15.png"),
             Positioned(
               top: 0,
+              //left: 0,
               //bottom: MediaQuery.of(context).size.height - 400,
-              child: Image.asset("assets/image_15.png"),
+              child: Image.asset("assets/bg.jpg"),
             ),
             
             Column(
@@ -270,3 +272,4 @@ class _WelcomescreenState extends State<Welcomescreen> {
     );
   }
 }
+*/

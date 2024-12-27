@@ -309,8 +309,8 @@ class _TodoListUIState extends State {
                                   padding: const EdgeInsets.all(8),
                                   child: Container(
                                       clipBehavior: Clip.antiAlias,
-                                      height: 100,
-                                      width: 100,
+                                      height: 90,
+                                      width: 150,
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius:
@@ -330,22 +330,22 @@ class _TodoListUIState extends State {
                                         CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Text(
-                                        basketList[index].productPrice,
-                                        style: GoogleFonts.quicksand(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.black,
-                                        ),
-                                      ),
+                                      
                                       //const SizedBox(width: 15),
                                       Text(
                                         basketList[index].productName,
                                         style: GoogleFonts.quicksand(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          color: const Color.fromRGBO(
-                                              84, 84, 84, 1),
+                                          fontSize: 23,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black),
+                                      ),
+
+                                       Text(
+                                        "₹ ${basketList[index].productPrice}",
+                                        style: GoogleFonts.quicksand(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w800,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ],

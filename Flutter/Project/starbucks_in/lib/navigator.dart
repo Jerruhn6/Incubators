@@ -98,7 +98,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:starbucks_in/View/homeScreen.dart';
 
 import 'package:starbucks_in/cart.dart';
-import 'package:starbucks_in/dummydata.dart';
 import 'package:starbucks_in/favorite_screen.dart';
 import 'package:starbucks_in/profileScreen.dart';
 
@@ -329,7 +328,7 @@ class _MyHomePageState extends State<AnimatedNavbar> {
                 '${favCount}',
                 style: GoogleFonts.quicksand(
                   fontSize: 10,
-                  color: Colors.white,
+                  color: Colors.white,    
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -390,8 +389,8 @@ class _MyHomePageState extends State<AnimatedNavbar> {
       ),
       const FavoriteScreen(),
       const MyBag(),
-      //const ProfileScreen(),
-      TransactionsGridPage(),
+      const ProfileScreen(),
+      //TransactionsGridPage(),
 
     ];
     return Scaffold(
