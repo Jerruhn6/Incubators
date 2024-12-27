@@ -99,6 +99,7 @@ import 'package:starbucks_in/View/homeScreen.dart';
 
 import 'package:starbucks_in/cart.dart';
 import 'package:starbucks_in/favorite_screen.dart';
+import 'package:starbucks_in/not%20used/database.dart';
 import 'package:starbucks_in/profileScreen.dart';
 
 String? basketitemLabel, favitemLabel;
@@ -389,7 +390,8 @@ class _MyHomePageState extends State<AnimatedNavbar> {
       ),
       const FavoriteScreen(),
       const MyBag(),
-      const ProfileScreen(),
+      CoffeeScreen(),
+      //const ProfileScreen(),
       //TransactionsGridPage(),
 
     ];

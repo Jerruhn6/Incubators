@@ -38,7 +38,10 @@ class HomeScreen extends StatefulWidget {
 
 class _SofaScreenState extends State<HomeScreen> {
 
-   List<Map<String, dynamic>> coffeeListsqflite = [];
+   dynamic coffeeListsqflite = [];
+   dynamic dessertListsqflite = [];
+   dynamic icecreamListsqflite = [];
+   dynamic breakfastListsqflite = [];
   bool changeColour = false;
 
   final Set<int> favoriteIndices = {};
@@ -60,8 +63,8 @@ class _SofaScreenState extends State<HomeScreen> {
 
       await getFavListFromFirebase();
       await getCartListFromFirebase();
-        initializeDatabase();
-    fetchDataFromFirebase();
+       await initializeDatabase();
+       await fetchDataFromFirebase();
     });
     super.initState();
   }
@@ -74,6 +77,9 @@ class _SofaScreenState extends State<HomeScreen> {
       final db = await _initDatabase();
       
       await fetchCoffeeData(db);
+      await fetchBreakfastData(db);
+      await fetchDessertData(db);
+      await fetchIceCreamData(db);
     } catch (e) {
       log("Error initializing database: $e");
     }
@@ -113,6 +119,40 @@ class _SofaScreenState extends State<HomeScreen> {
   }
 
 
+  Future<void> fetchBreakfastData(Database db) async {
+    try {
+      final List<Map<String, dynamic>> data = await db.query('breakfast');
+      setState(() {
+        breakfastListsqflite = data;
+      });
+      log("Fetched coffee data: $breakfastListsqflite");
+    } catch (e) {
+      log("Error fetching coffee data: $e");
+    }
+  }
+  Future<void> fetchDessertData(Database db) async {
+    try {
+      final List<Map<String, dynamic>> data = await db.query('dessert');
+      setState(() {
+        dessertListsqflite = data;
+      });
+      log("Fetched coffee data: $dessertListsqflite");
+    } catch (e) {
+      log("Error fetching coffee data: $e");
+    }
+  }
+  
+  Future<void> fetchIceCreamData(Database db) async {
+    try {
+      final List<Map<String, dynamic>> data = await db.query('icecream');
+      setState(() {
+        icecreamListsqflite = data;
+      });
+      log("Fetched coffee data: $icecreamListsqflite");
+    } catch (e) {
+      log("Error fetching coffee data: $e");
+    }
+  }
 
 //--------------------get cofee list-----------------//
   Future<void> getCoffeeListFromFirebase() async {
