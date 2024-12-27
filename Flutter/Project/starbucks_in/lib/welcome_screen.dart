@@ -28,7 +28,7 @@ class WelcomeScreen extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: 'Welcome!\n',
-                        style: GoogleFonts.alegreya(
+                        style: GoogleFonts.raleway(
                           color: Colors.orange[300],
                           fontSize: 50.0,
                           fontWeight: FontWeight.w900,

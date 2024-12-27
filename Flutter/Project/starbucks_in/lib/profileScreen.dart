@@ -290,6 +290,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starbucks_in/register.dart';
 import 'package:starbucks_in/signup_screen.dart';
+import 'package:starbucks_in/welcome_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -398,7 +399,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const SignUpScreen(),
+                        builder: (context) => const WelcomeScreen(),
                       ),
                     );
                   },

@@ -63,7 +63,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       Text(
                         'Welcome Back',
                          style: GoogleFonts.alegreya(
-                          color: Colors.black,
+                          color: Colors.brown,
                           fontSize: 40.0,
                           fontWeight: FontWeight.w900,
                         ),
@@ -263,7 +263,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           
                            alignment: Alignment.center,   
                            decoration: BoxDecoration(
-                            color: Colors.black,
+                            color: Colors.brown,
                             borderRadius: BorderRadius.circular(8)
                            ), 
                             child: Text(
@@ -311,9 +311,13 @@ class _SignInScreenState extends State<SignInScreen> {
                       const SizedBox(
                         height: 25.0,
                       ),
-                      Row(
+                     const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          Icon(Icons.facebook,size: 40,),
+                          Icon(Icons.facebook ,size: 40,),
+                          Icon(Icons.facebook,size: 40,),
+                          Icon(Icons.facebook,size: 40,),
                         //  Logo(Logos.facebook_logo),
                         //   Logo(Logos.instagram),
                         //   Logo(Logos.google),

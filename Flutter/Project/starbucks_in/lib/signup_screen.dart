@@ -63,7 +63,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Text(
                         'Get Started',
                          style: GoogleFonts.alegreya(
-                          color: Colors.black,
+                            color: Colors.brown,
                           fontSize: 40.0,
                           fontWeight: FontWeight.w900,
                         ),
@@ -305,7 +305,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     message: "User Register Successfully",
                                     context: context,
                                   );
-                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                                    return const SignInScreen();
+                                  }));
                                 } on FirebaseAuthException catch (error) {
                                   print(error.code);
                                   print("${error.message}");
@@ -338,7 +340,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           
                            alignment: Alignment.center,   
                            decoration: BoxDecoration(
-                            color: Colors.black,
+                            color: Colors.brown,
                             borderRadius: BorderRadius.circular(8)
                            ), 
                             child: Text(
@@ -388,9 +390,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 30.0,
                       ),
                       // sign up social media logo
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          Icon(Icons.facebook,size: 40,),
+                          Icon(Icons.facebook ,size: 40,),
+                          Icon(Icons.facebook,size: 40,),
+                          Icon(Icons.facebook,size: 40,),
                           // Logo(Logos.facebook_logo),
                           // Logo(Logos.instagram),
                           // Logo(Logos.google),

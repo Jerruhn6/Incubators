@@ -18,6 +18,7 @@ import 'package:starbucks_in/cart.dart';
 import 'package:starbucks_in/favorite_screen.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:starbucks_in/not%20used/database.dart';
 
 
 dynamic cartProducts;
@@ -36,6 +37,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _SofaScreenState extends State<HomeScreen> {
+
+   List<Map<String, dynamic>> coffeeListsqflite = [];
   bool changeColour = false;
 
   final Set<int> favoriteIndices = {};
@@ -57,9 +60,59 @@ class _SofaScreenState extends State<HomeScreen> {
 
       await getFavListFromFirebase();
       await getCartListFromFirebase();
+        initializeDatabase();
+    fetchDataFromFirebase();
     });
     super.initState();
   }
+
+
+
+  // Initialize database and fetch data
+  Future<void> initializeDatabase() async {
+    try {
+      final db = await _initDatabase();
+      
+      await fetchCoffeeData(db);
+    } catch (e) {
+      log("Error initializing database: $e");
+    }
+  }
+
+  Future<Database> _initDatabase() async {
+    String path = join(await getDatabasesPath(), 'cafe_data.db');
+    log('Database Path: $path');
+    return await openDatabase(
+      path,
+      version: 1,
+      onCreate: (db, version) async {
+        log('Creating coffee table...');
+        await db.execute('''
+          CREATE TABLE coffee(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            price REAL,
+            image_path TEXT
+          )
+        ''');
+      },
+    );
+  }
+
+
+  Future<void> fetchCoffeeData(Database db) async {
+    try {
+      final List<Map<String, dynamic>> data = await db.query('coffee');
+      setState(() {
+        coffeeListsqflite = data;
+      });
+      log("Fetched coffee data: $coffeeListsqflite");
+    } catch (e) {
+      log("Error fetching coffee data: $e");
+    }
+  }
+
+
 
 //--------------------get cofee list-----------------//
   Future<void> getCoffeeListFromFirebase() async {

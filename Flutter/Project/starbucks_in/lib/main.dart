@@ -12,7 +12,7 @@ import 'package:starbucks_in/orderTrack.dart';
 import 'package:starbucks_in/payment_screen.dart';
 import 'package:starbucks_in/register.dart';
 import 'package:starbucks_in/splashScreen.dart';
-import 'package:starbucks_in/welcomeScreen.dart';
+
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();

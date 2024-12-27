@@ -11,7 +11,7 @@ import 'package:starbucks_in/navigator.dart';
 import 'package:starbucks_in/Model/productModel.dart';
 // ignore: unused_import
 import 'package:starbucks_in/session.dart';
-import 'package:starbucks_in/welcomeScreen.dart';
+
 import 'package:starbucks_in/welcome_screen.dart';
 
 class SplashScreen extends StatelessWidget {
