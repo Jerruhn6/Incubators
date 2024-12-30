@@ -48,7 +48,7 @@ class WelcomeScreen extends StatelessWidget {
               )),
 
           //SizedBox(height: 300,),
-          const Flexible(
+           Flexible(
             flex: 1,
             child: Align(
               alignment: Alignment.bottomRight,
@@ -56,16 +56,16 @@ class WelcomeScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: WelcomeButton(
-                      buttonText: 'Sign in',
-                      onTap: SignInScreen(),
+                      buttonText: 'Admin',
+                      onTap: SignInScreen(isUser: false,),
                       color: Colors.transparent,
                       textColor:const Color(0xFFFFA726),
                     ),
                   ),
                   Expanded(
                     child: WelcomeButton(
-                      buttonText: 'Sign up',
-                      onTap: SignUpScreen(),
+                      buttonText: 'User',
+                      onTap: SignInScreen(isUser: true,),
                       color: Color.fromARGB(49, 255, 255, 255),
                       textColor:  const Color(0xFFFFA726),
                     ),

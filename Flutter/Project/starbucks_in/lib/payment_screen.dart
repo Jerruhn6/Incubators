@@ -1,11 +1,24 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:starbucks_in/Model/favModel.dart';
+import 'package:starbucks_in/Model/orderModel.dart';
 import 'package:starbucks_in/Model/payment_model.dart';
 import 'package:starbucks_in/orderTrack.dart';
 
 class PaymentScreen extends StatelessWidget {
   final double totalAmount;
+  final String title;
+  final String image;
+  final String price;
 
-  const PaymentScreen({super.key, required this.totalAmount});
+  PaymentScreen(
+      {super.key,
+      required this.totalAmount,
+      required this.title,
+      required this.image,
+      required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +127,20 @@ class PaymentScreen extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {
+                  // Example product to add to the list
+
+                  log("${title}");
+
+                  Ordermodel newProduct = Ordermodel(
+                    productName: title,
+                    productImage: image, // You can use an image URL
+                    productPrice: price,
+                    isConfirmed:false,
+                    
+                    
+                  );
+                  addToFavorites(newProduct);
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => OrderTrack()),
@@ -144,6 +171,21 @@ class PaymentScreen extends StatelessWidget {
       ),
     );
   }
+
+  QuerySnapshot? response;
+  // Function to add product to the list and store it to Firebase
+  void addToFavorites( Ordermodel product2) async {
+    // final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+
+    try {
+      await FirebaseFirestore.instance
+          .collection("Orders")
+          .add(product2.toMap());
+      // Add the product to the 'favorites' collection in Firebase
+      // await _dbRef.child('favorites').push().set(product.toMap());
+      print("Orders successfully.");
+    } catch (e) {
+      print("Error adding product to favorites: $e");
+    }
+  }
 }
-
-

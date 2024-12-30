@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:starbucks_in/ADMIN_SIDE/adminScreen.dart';
 import 'package:starbucks_in/View/commanScreen.dart';
 import 'package:starbucks_in/View/homeScreen.dart';
 import 'package:starbucks_in/cart.dart';
@@ -15,6 +16,8 @@ import 'package:starbucks_in/session.dart';
 import 'package:starbucks_in/welcome_screen.dart';
 
 class SplashScreen extends StatelessWidget {
+
+ 
   const SplashScreen({super.key});
 
   void navigate(BuildContext context) {
@@ -33,6 +36,38 @@ class SplashScreen extends StatelessWidget {
               },
             ),
           );
+          //  if (isUser) {
+                          
+          //                         Navigator.of(context).pushAndRemoveUntil(
+          //                           MaterialPageRoute(
+          //                             builder: (context) {
+          //                               return AnimatedNavbar(
+          //                             basketCount:basketList.length,
+          //                             favCount: wishlist.length,
+          //                             // email: userCredential.user!.email!,
+          //                           );
+          //                             },
+          //                           ),(route){
+          //                             return false;
+          //                           },
+          //                         );
+                          
+          //               } else {
+                          
+          //                         Navigator.of(context).pushAndRemoveUntil(
+          //                           MaterialPageRoute(
+          //                             builder: (context) {
+          //                               return AdminScreen(
+          //                                   userName:"_emailTextEditingController.text ",
+          //                                   mNo:"9325822114" ,
+          //                             // email: userCredential.user!.email!,
+          //                           );
+          //                             },
+          //                           ),(route){
+          //                             return false;
+          //                           },
+          //                         );
+          //               }
         } else {
           print("NAVIGATE TO LOGIN");
           Navigator.of(context).pushReplacement(

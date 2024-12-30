@@ -337,7 +337,7 @@ class _SofaScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 85),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 0.7,
+                childAspectRatio: 0.8,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
               ),
@@ -364,11 +364,12 @@ class _SofaScreenState extends State<HomeScreen> {
                     // }));
                   },
                   child: Container(
+                    //height: MediaQuery.of(context).size.height * 0.23,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.black,
-                        width: 2,
+                        width: 1,
                       ),
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -382,8 +383,10 @@ class _SofaScreenState extends State<HomeScreen> {
                             children: [
                               Image.asset(
                                 categoryNames[index]["image_url"],
-                                height: 192,
-                                //height: MediaQuery.of(context).size.height * 0.18,
+                                //height: 205,
+                                height: MediaQuery.of(context).size.height * 0.18,
+                                
+                               
                                 width: MediaQuery.of(context).size.width * 0.5,
                                 fit: BoxFit.fill,
                               ),
@@ -397,7 +400,7 @@ class _SofaScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Container(
-                                height: 50,
+                                height: 64.0,
                                 alignment: Alignment.center,
                                 decoration: const BoxDecoration(
                                   color: Colors.brown,

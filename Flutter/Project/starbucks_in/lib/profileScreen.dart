@@ -1,7 +1,9 @@
+
 // import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
-// import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:starbucks_in/register.dart';
+// import 'package:starbucks_in/signup_screen.dart';
+// import 'package:starbucks_in/welcome_screen.dart';
 
 // class ProfileScreen extends StatefulWidget {
 //   const ProfileScreen({super.key});
@@ -23,8 +25,8 @@
 //         title: Text(
 //           'Profile',
 //           style: GoogleFonts.lato(
-//             fontSize: 22,
-//             fontWeight: FontWeight.bold,
+//             fontSize: 26,
+//             fontWeight: FontWeight.w800,
 //             color: Colors.white,
 //           ),
 //         ),
@@ -101,19 +103,7 @@
 //                   Icons.location_on,
 //                   userLocation,
 //                   'Edit Location',
-//                   () async {
-//                     final updatedLocation = await Navigator.push(
-//                       context,
-//                       MaterialPageRoute(
-//                         builder: (context) => EditLocationPage(initialLocation: userLocation),
-//                       ),
-//                     );
-//                     if (updatedLocation != null) {
-//                       setState(() {
-//                         userLocation = updatedLocation;
-//                       });
-//                     }
-//                   },
+//                   () {},
 //                 ),
 //                 const SizedBox(height: 20),
 //                 // Logout Button
@@ -122,7 +112,7 @@
 //                     Navigator.pushReplacement(
 //                       context,
 //                       MaterialPageRoute(
-//                         builder: (context) => const RegisterPage(),
+//                         builder: (context) => const WelcomeScreen(),
 //                       ),
 //                     );
 //                   },
@@ -203,21 +193,34 @@
 //   }
 // }
 
-// class EditLocationPage extends StatefulWidget {
-//   final String initialLocation;
+// class EditProfilePage extends StatefulWidget {
+//   final String name;
+//   final String phone;
+//   final String location;
 
-//   const EditLocationPage({Key? key, required this.initialLocation}) : super(key: key);
+//   const EditProfilePage({
+//     Key? key,
+//     required this.name,
+//     required this.phone,
+//     required this.location,
+//   }) : super(key: key);
 
 //   @override
-//   State<EditLocationPage> createState() => _EditLocationPageState();
+//   State<EditProfilePage> createState() => _EditProfilePageState();
 // }
 
-// class _EditLocationPageState extends State<EditLocationPage> {
-//   late GoogleMapController mapController;
-//   LatLng _currentPosition = const LatLng(48.9226, 24.7097); // Default coordinates
+// class _EditProfilePageState extends State<EditProfilePage> {
+//   final _formKey = GlobalKey<FormState>();
+//   late String _name;
+//   late String _phone;
+//   late String _location;
 
-//   void _onMapCreated(GoogleMapController controller) {
-//     mapController = controller;
+//   @override
+//   void initState() {
+//     super.initState();
+//     _name = widget.name;
+//     _phone = widget.phone;
+//     _location = widget.location;
 //   }
 
 //   @override
@@ -225,7 +228,7 @@
 //     return Scaffold(
 //       appBar: AppBar(
 //         title: Text(
-//           'Edit Location',
+//           'Edit Profile',
 //           style: GoogleFonts.lato(
 //             fontSize: 22,
 //             fontWeight: FontWeight.bold,
@@ -235,61 +238,75 @@
 //         centerTitle: true,
 //         backgroundColor: Colors.brown[600],
 //       ),
-//       body: Column(
-//         children: [
-//           Expanded(
-//             child: GoogleMap(
-//               onMapCreated: _onMapCreated,
-//               initialCameraPosition: CameraPosition(
-//                 target: _currentPosition,
-//                 zoom: 12.0,
+//       body: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Form(
+//           key: _formKey,
+//           child: Column(
+//             children: [
+//               TextFormField(
+//                 initialValue: _name,
+//                 decoration: const InputDecoration(labelText: 'Name'),
+//                 validator: (value) =>
+//                     value!.isEmpty ? 'Name cannot be empty' : null,
+//                 onSaved: (value) => _name = value!,
 //               ),
-//               markers: {
-//                 Marker(
-//                   markerId: const MarkerId('currentLocation'),
-//                   position: _currentPosition,
-//                   draggable: true,
-//                   onDragEnd: (newPosition) {
-//                     setState(() {
-//                       _currentPosition = newPosition;
-//                     });
-//                   },
-//                 ),
-//               },
-//             ),
-//           ),
-//           Padding(
-//             padding: const EdgeInsets.all(16.0),
-//             child: ElevatedButton(
-//               onPressed: () {
-//                 Navigator.pop(context, '${_currentPosition.latitude}, ${_currentPosition.longitude}');
-//               },
-//               style: ElevatedButton.styleFrom(
-//                 backgroundColor: Colors.brown[500],
-//                 shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(20),
-//                 ),
+//               const SizedBox(height: 16),
+//               TextFormField(
+//                 initialValue: _phone,
+//                 decoration: const InputDecoration(labelText: 'Phone Number'),
+//                 keyboardType: TextInputType.phone,
+//                 validator: (value) =>
+//                     value!.isEmpty ? 'Phone number cannot be empty' : null,
+//                 onSaved: (value) => _phone = value!,
 //               ),
-//               child: const Text('Save Location'),
-//             ),
+//               const SizedBox(height: 16),
+//               TextFormField(
+//                 initialValue: _location,
+//                 decoration: const InputDecoration(labelText: 'Location'),
+//                 validator: (value) =>
+//                     value!.isEmpty ? 'Location cannot be empty' : null,
+//                 onSaved: (value) => _location = value!,
+//               ),
+//               const SizedBox(height: 30),
+//               ElevatedButton(
+//                 onPressed: _saveProfile,
+//                 style: ElevatedButton.styleFrom(
+//                   backgroundColor: Colors.brown[500],
+//                   shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(20),
+//                   ),
+//                 ),
+//                 child: const Text('Save Changes'),
+//               ),
+//             ],
 //           ),
-//         ],
+//         ),
 //       ),
 //     );
+//   }
+
+//   void _saveProfile() {
+//     if (_formKey.currentState!.validate()) {
+//       _formKey.currentState!.save();
+//       Navigator.pop(context, {
+//         'name': _name,
+//         'phone': _phone,
+//         'location': _location,
+//       });
+//     }
 //   }
 // }
 
 
-
-
-
-
-
+/////////////////////////////////////////////////////////////////////////////////////
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:starbucks_in/register.dart';
-import 'package:starbucks_in/signup_screen.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:starbucks_in/ordersHistoryScreen.dart';
+
 import 'package:starbucks_in/welcome_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -301,9 +318,23 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   // State variables for user data
-  String userName = 'Ashish';
+  String userName = 'Ashish Sonkamble';
+  String ordersHistoryTitle = 'Orders History';
   String userPhone = '+919325822114';
   String userLocation = 'Ukraine, Ivano-Frankivsk, Kon...';
+  File? _profileImage;
+
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _pickImage() async {
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -328,10 +359,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Column(
               children: [
                 // Profile Picture
-                const CircleAvatar(
-                  radius: 70,
-                  backgroundImage: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJQQb_a7dNJkCek_QcPIPlI3ZjqbdRLRAz-Q&s',
+                GestureDetector(
+                  onTap: _pickImage,
+                  child: CircleAvatar(
+                    radius: 70,
+                    backgroundImage: _profileImage != null
+                        ? FileImage(_profileImage!)
+                        : const NetworkImage(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJQQb_a7dNJkCek_QcPIPlI3ZjqbdRLRAz-Q&s',
+                          ) as ImageProvider,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: CircleAvatar(
+                        radius: 20,
+                        backgroundColor: Colors.brown[600],
+                        child: const Icon(
+                          Icons.camera_alt,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -388,11 +435,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 _buildSettingTile(
                   context,
                   Icons.location_on,
-                  userLocation,
+                    userLocation,
                   'Edit Location',
                   () {},
                 ),
+                _buildSettingTile(
+                  context,
+                  Icons.history,
+                'Orders History',
+                  'Orders History',
+                  () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                      return OrderHistoryPage();
+                    }));
+                    setState(() {
+                      
+                    });
+                  },
+                ),
                 const SizedBox(height: 20),
+
                 // Logout Button
                 TextButton.icon(
                   onPressed: () {
@@ -514,11 +576,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back_ios_new_outlined,size: 25,
+          color: Colors.white,),
+          
+        ),
         title: Text(
           'Edit Profile',
           style: GoogleFonts.lato(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
+            fontSize: 25,
+            fontWeight: FontWeight.w900,
             color: Colors.white,
           ),
         ),
@@ -564,7 +634,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                child: const Text('Save Changes'),
+                child: const Text('Save Changes',style: TextStyle(color: Colors.white),),
               ),
             ],
           ),
@@ -584,5 +654,3 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
   }
 }
-
-

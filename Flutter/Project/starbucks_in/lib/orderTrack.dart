@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:starbucks_in/View/homeScreen.dart';
+import 'package:starbucks_in/cart.dart';
+import 'package:starbucks_in/favorite_screen.dart';
+import 'package:starbucks_in/navigator.dart';
 import 'package:starbucks_in/orderStatusDetails.dart';
 
 class OrderTrack extends StatefulWidget {
@@ -48,14 +52,14 @@ class _OrderTrackState extends State<OrderTrack> {
                     shadowColor: Colors.brown[800],
                   ),
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => OrderStatusDetails()),
+                          builder: (context) =>  AnimatedNavbar(basketCount: basketList.length, favCount: wishlist.length,)),
                     );
                   },
                   child: const Text(
-                    'Track Your Order ',
+                    'Continue ',
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),

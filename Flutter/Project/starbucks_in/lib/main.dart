@@ -2,10 +2,12 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:starbucks_in/ADMIN_SIDE/adminScreen.dart';
 import 'package:starbucks_in/cart.dart';
 import 'package:starbucks_in/favorite_screen.dart';
 import 'package:starbucks_in/View/commanScreen.dart';
-import 'package:starbucks_in/manageOrder.dart';
+import 'package:starbucks_in/ADMIN_SIDE/inventoryScreen.dart';
+import 'package:starbucks_in/ADMIN_SIDE/manageOrder.dart';
 import 'package:starbucks_in/navigator.dart';
 import 'package:starbucks_in/orderStatusDetails.dart';
 import 'package:starbucks_in/orderTrack.dart';
@@ -28,8 +30,11 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/profile',
-    
-    home: SplashScreen(),
+
+    //home: AdminScreen(),
+   // home : InventoryScreen(),
+    //  home: OrdersPage(),
+     home: SplashScreen(),
     //home: Welcomescreen(),
     //home: RegisterPage(),
     //home: OrdersPage(),

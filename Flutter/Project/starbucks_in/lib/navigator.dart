@@ -390,8 +390,8 @@ class _MyHomePageState extends State<AnimatedNavbar> {
       ),
       const FavoriteScreen(),
       const MyBag(),
-      CoffeeScreen(),
-      //const ProfileScreen(),
+      //CoffeeScreen(),
+      const ProfileScreen(),
       //TransactionsGridPage(),
 
     ];

@@ -181,7 +181,7 @@ class _SofaScreenState extends State<Commanscreen> {
                               Image.network(
                                 product.image_path,
                                 height:
-                                    MediaQuery.of(context).size.height * 0.17,
+                                    MediaQuery.of(context).size.height * 0.14,
                                 width: MediaQuery.of(context).size.width * 0.5,
                                 fit: BoxFit.fill,
                               ),

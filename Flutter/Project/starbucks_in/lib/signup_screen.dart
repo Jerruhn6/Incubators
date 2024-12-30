@@ -10,7 +10,8 @@ import 'package:starbucks_in/signin_screen.dart';
 
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+  bool isUser;
+  SignUpScreen({super.key, required this.isUser});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -306,7 +307,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     context: context,
                                   );
                                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
-                                    return const SignInScreen();
+                                    return SignInScreen(isUser: widget.isUser,);
                                   }));
                                 } on FirebaseAuthException catch (error) {
                                   print(error.code);
@@ -421,7 +422,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (e) => const SignInScreen(),
+                                  builder: (e) => SignInScreen(isUser: widget.isUser,),
                                 ),
                               );
                             },

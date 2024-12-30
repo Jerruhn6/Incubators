@@ -174,6 +174,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:starbucks_in/Model/favModel.dart';
 import 'package:starbucks_in/favorite_screen.dart';
 import 'package:starbucks_in/navigator.dart';
+import 'package:starbucks_in/payment_screen.dart';
 import 'package:starbucks_in/productInfoScreen.dart';
 
 
@@ -408,7 +409,14 @@ class _TodoListUIState extends State {
                                 color: Colors.grey,
                               ),
                               GestureDetector(
-                                onTap: () {},
+                               onTap: () {
+                            Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        //return SofaScreen();
+                        return PaymentScreen(totalAmount: double.parse(basketList[index].productPrice), title: basketList[index].productName,price: basketList[index].productPrice,image: basketList[index].productImage);
+                      }));
+                    
+                          },
                                 child: Container(
                                   // height: 50,
                                   // color: Colors.amber,

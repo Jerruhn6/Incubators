@@ -2,6 +2,7 @@
 //-------------------------------------new -------------------------//
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starbucks_in/Model/favModel.dart';
@@ -28,6 +29,23 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+
+  void addToBasket(FavModel product2) async {
+    // final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+
+    try {
+      await FirebaseFirestore.instance
+          .collection("basket")
+          .add(product2.toMap());
+      // Add the product to the 'favorites' collection in Firebase
+      // await _dbRef.child('favorites').push().set(product.toMap());
+      print("Product added to favorites successfully.");
+    } catch (e) {
+      print("Error adding product to favorites: $e");
+    }
+  }
+  // final Set<int> basketIndices = {};
+  // final isBasket = basketIndices.contains(index);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,7 +161,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         //return SofaScreen();
-                        return PaymentScreen(totalAmount: double.parse(widget.price));
+                        return PaymentScreen(totalAmount: double.parse(widget.price),title:    widget.title,price: widget.price,image: widget.image ,);
                       }));
                     
                           },
@@ -169,6 +187,27 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
                         GestureDetector(
                           onTap: () {
+                            log("${widget.title}");
+
+                                        FavModel newProduct = FavModel(
+                                          productName: widget.title,
+                                          productImage: widget.image, // You can use an image URL
+                                          productPrice: widget.price,
+                                        );
+                                        addToBasket(newProduct);
+                                        setState(() {
+                                          // if (isBasket) {
+                                          //   basketIndices.remove(
+                                          //       index); // Remove from favorites
+                                          // } else {
+                                          //   basketIndices
+                                          //       .add(index); // Add to favorites
+                                          // }
+                                        });
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text('Added to Cart')),
+                                    );
                                         // Example product to add to the list
                                     //     //log("${product.name}");
 

@@ -78,6 +78,20 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _TodoListUIState extends State {
+  void addToBasket(FavModel product2) async {
+    // final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+
+    try {
+      await FirebaseFirestore.instance
+          .collection("basket")
+          .add(product2.toMap());
+      // Add the product to the 'favorites' collection in Firebase
+      // await _dbRef.child('favorites').push().set(product.toMap());
+      print("Product added to favorites successfully.");
+    } catch (e) {
+      print("Error adding product to favorites: $e");
+    }
+  }
 
   @override
   void initState() {
@@ -309,7 +323,29 @@ class _TodoListUIState extends State {
                                   child: Row(
                                     children: [
                                       IconButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            log("${wishlist[index].productName}");
+
+                                        FavModel newProduct = FavModel(
+                                          productName:wishlist[index].productName,
+                                          productImage: wishlist[index].productImage, // You can use an image URL
+                                          productPrice: wishlist[index].productPrice,
+                                        );
+                                        addToBasket(newProduct);
+                                        setState(() {
+                                          // if (isBasket) {
+                                          //   basketIndices.remove(
+                                          //       index); // Remove from favorites
+                                          // } else {
+                                          //   basketIndices
+                                          //       .add(index); // Add to favorites
+                                          // }
+                                        });
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text('Added to Cart')),
+                                    );
+                                          },
                                           icon: Icon(Icons.shopping_cart)),
                                       Text(
                                         "Add To basket",

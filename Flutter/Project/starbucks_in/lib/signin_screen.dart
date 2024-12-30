@@ -4,6 +4,7 @@ import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_not
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:starbucks_in/ADMIN_SIDE/adminScreen.dart';
 import 'package:starbucks_in/View/homeScreen.dart';
 import 'package:starbucks_in/cart.dart';
 import 'package:starbucks_in/customSnackbar.dart';
@@ -14,9 +15,9 @@ import 'package:starbucks_in/session.dart';
 import 'package:starbucks_in/signup_screen.dart';
 import 'package:icons_plus/icons_plus.dart';
 
-
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+  bool isUser;
+  SignInScreen({super.key, required this.isUser});
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -62,7 +63,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     children: [
                       Text(
                         'Welcome Back',
-                         style: GoogleFonts.alegreya(
+                        style: GoogleFonts.alegreya(
                           color: Colors.brown,
                           fontSize: 40.0,
                           fontWeight: FontWeight.w900,
@@ -80,33 +81,28 @@ class _SignInScreenState extends State<SignInScreen> {
                           return null;
                         },
                         decoration: InputDecoration(
-                          label: const Text('Email'),
-                          hintText: 'Enter Email',
-                           labelStyle: TextStyle(
-                            color: Colors.black
-                          ),
-                          hintStyle: GoogleFonts.quicksand(
-                            color: Colors.black26,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.black12, // Default border color
+                            label: const Text('Email'),
+                            hintText: 'Enter Email',
+                            labelStyle: TextStyle(color: Colors.black),
+                            hintStyle: GoogleFonts.quicksand(
+                              color: Colors.black26,
                             ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.black12, // Default border color
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.black12, // Default border color
+                              ),
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                           focusedBorder:const OutlineInputBorder(
-                            borderSide:BorderSide(
-                              color:Colors.blue ,//Color(0xFFFFE082),
-                              width: 1.5
-                            )
-                          )
-                        ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.black12, // Default border color
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.blue, //Color(0xFFFFE082),
+                                    width: 1.5))),
                       ),
                       const SizedBox(
                         height: 25.0,
@@ -115,7 +111,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         controller: _passwordTextEditingController,
                         obscureText: true,
                         obscuringCharacter: '•',
-                        
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter Password';
@@ -123,33 +118,27 @@ class _SignInScreenState extends State<SignInScreen> {
                           return null;
                         },
                         decoration: InputDecoration(
-                          label: const Text('Password'),
-                          hintText: 'Enter Password',
-                           labelStyle:const TextStyle(
-                            color: Colors.black
-                          ),
-                          hintStyle: GoogleFonts.quicksand(
-                            color: Colors.black26,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.black12,
+                            label: const Text('Password'),
+                            hintText: 'Enter Password',
+                            labelStyle: const TextStyle(color: Colors.black),
+                            hintStyle: GoogleFonts.quicksand(
+                              color: Colors.black26,
                             ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.black12, 
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.black12,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                           focusedBorder: const OutlineInputBorder(
-                            borderSide:BorderSide(
-                              color: Colors.blue,
-                              width: 1.5
-                            )
-                          )
-                        ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.black12,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.blue, width: 1.5))),
                       ),
                       const SizedBox(
                         height: 25.0,
@@ -192,37 +181,48 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                             
-                        
-                              if (_formSignInKey.currentState!.validate() &&
-                                  rememberPassword &&
-                                  _emailTextEditingController.text
-                                      .trim()
-                                      .isNotEmpty &&
-                                  _passwordTextEditingController.text
-                                      .trim()
-                                      .isNotEmpty) {
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Processing Data'),
-                                  ),
-                                  
-                                 
-                                );
-                                         try {
-                                  UserCredential userCredential =
-                                      await _firebaseAuth
-                                          .signInWithEmailAndPassword(
-                                    email: _emailTextEditingController.text,
-                                    password: _passwordTextEditingController.text,
-                                  );
-                                  log("UserCredentials:${userCredential.user!.email}");
-                                  //-------sharedPreference
-                                  await SessionData.storeSessionData(
-                                      loginData: true,
-                                      emailId: userCredential.user!.email!,
-                                      );
-                        
+                          if (_formSignInKey.currentState!.validate() &&
+                              rememberPassword &&
+                              _emailTextEditingController.text
+                                  .trim()
+                                  .isNotEmpty &&
+                              _passwordTextEditingController.text
+                                  .trim()
+                                  .isNotEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Processing Data'),
+                              ),
+                            );
+                            try {
+                              UserCredential userCredential =
+                                  await _firebaseAuth
+                                      .signInWithEmailAndPassword(
+                                email: _emailTextEditingController.text,
+                                password: _passwordTextEditingController.text,
+                              );
+                              log("UserCredentials:${userCredential.user!.email}");
+                              //-------sharedPreference
+                              await SessionData.storeSessionData(
+                                loginData: true,
+                                emailId: userCredential.user!.email!,
+                              );
+
+                              // Navigator.of(context).pushAndRemoveUntil(
+                              //   MaterialPageRoute(
+                              //     builder: (context) {
+                              //       return AnimatedNavbar(
+                              //     basketCount:basketList.length,
+                              //     favCount: wishlist.length,
+                              //     // email: userCredential.user!.email!,
+                              //   );
+                              //     },
+                              //   ),(route){
+                              //     return false;
+                              //   },
+                              // );
+                               if (widget.isUser) {
+                          
                                   Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
                                       builder: (context) {
@@ -236,44 +236,54 @@ class _SignInScreenState extends State<SignInScreen> {
                                       return false;
                                     },
                                   );
-                                } on FirebaseAuthException catch (error) {
-                                  log("ERROR :${error.code}");
-                                  log("ERROR :${error.message}");
-                                  CustomSnackbar.showCustomSnackbar(
-                                    message: error.code,
-                                    context: context,
+                          
+                        } else {
+                          
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return AdminScreen(
+                                            userName:_emailTextEditingController.text ,
+                                            mNo:"9325822114" ,
+                                      // email: userCredential.user!.email!,
+                                    );
+                                      },
+                                    ),(route){
+                                      return false;
+                                    },
                                   );
-                                }
-                                        
-                              
-                        
-                                
-                              } else if (!rememberPassword) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                        'Please agree to the processing of personal data'),
-                                  ),
-                                );
-                              }
-                            },
-                       child: Container(
+                        }
+                            } on FirebaseAuthException catch (error) {
+                              log("ERROR :${error.code}");
+                              log("ERROR :${error.message}");
+                              CustomSnackbar.showCustomSnackbar(
+                                message: error.code,
+                                context: context,
+                              );
+                            }
+                          } else if (!rememberPassword) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    'Please agree to the processing of personal data'),
+                              ),
+                            );
+                          }
+                        },
+                        child: Container(
                           width: double.infinity,
                           height: 40,
-                          
-                           alignment: Alignment.center,   
-                           decoration: BoxDecoration(
-                            color: Colors.brown,
-                            borderRadius: BorderRadius.circular(8)
-                           ), 
-                            child: Text(
-                              'Sign in',
-                              style: GoogleFonts.quicksand(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Colors.brown,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Text(
+                            'Sign in',
+                            style: GoogleFonts.quicksand(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -311,17 +321,29 @@ class _SignInScreenState extends State<SignInScreen> {
                       const SizedBox(
                         height: 25.0,
                       ),
-                     const Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Icon(Icons.facebook,size: 40,),
-                          Icon(Icons.facebook ,size: 40,),
-                          Icon(Icons.facebook,size: 40,),
-                          Icon(Icons.facebook,size: 40,),
-                        //  Logo(Logos.facebook_logo),
-                        //   Logo(Logos.instagram),
-                        //   Logo(Logos.google),
-                        //   Logo(Logos.apple),
+                          Icon(
+                            Icons.facebook,
+                            size: 40,
+                          ),
+                          Icon(
+                            Icons.facebook,
+                            size: 40,
+                          ),
+                          Icon(
+                            Icons.facebook,
+                            size: 40,
+                          ),
+                          Icon(
+                            Icons.facebook,
+                            size: 40,
+                          ),
+                          //  Logo(Logos.facebook_logo),
+                          //   Logo(Logos.instagram),
+                          //   Logo(Logos.google),
+                          //   Logo(Logos.apple),
                         ],
                       ),
                       const SizedBox(
@@ -342,7 +364,9 @@ class _SignInScreenState extends State<SignInScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (e) => const SignUpScreen(),
+                                  builder: (e) => SignUpScreen(
+                                    isUser: widget.isUser,
+                                  ),
                                 ),
                               );
                             },
