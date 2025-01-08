@@ -309,13 +309,13 @@ class _SofaScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: Colors.white,
               size: 28,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 5,
           )
         ],
@@ -383,8 +383,8 @@ class _SofaScreenState extends State<HomeScreen> {
                             children: [
                               Image.asset(
                                 categoryNames[index]["image_url"],
-                                //height: 205,
-                                height: MediaQuery.of(context).size.height * 0.18,
+                                height: 177,
+                                //height: MediaQuery.of(context).size.height * 0.19,
                                 
                                
                                 width: MediaQuery.of(context).size.width * 0.5,
@@ -400,7 +400,7 @@ class _SofaScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Container(
-                                height: 64.0,
+                                height: 48.0,
                                 alignment: Alignment.center,
                                 decoration: const BoxDecoration(
                                   color: Colors.brown,
