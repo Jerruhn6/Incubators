@@ -297,13 +297,13 @@ btshet(BuildContext context, List<TodoModel> todoCards) {
                                                       child: SizedBox(
                                                           width: 300,
                                                           child: Text(
-                                                            "${todoCards[index].description}",
+                                                            todoCards[index].description,
                                                               style: const TextStyle(
                                                                   fontSize:
                                                                       12)))),
                                                    Padding(
                                                     padding: const EdgeInsets.only(bottom:8.0),
-                                                    child: Text("${todoCards[index].date}",
+                                                    child: Text(todoCards[index].date,
                                                         style:
                                                             const TextStyle(fontSize: 12)),
                                                   )

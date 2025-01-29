@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp(
-    options: FirebaseOptions(apiKey: "AIzaSyCqIJOq2rLH9mpMVdOP2I9MY0wPzotkN3c", appId: "1:512625998670:android:4109b190bf674f6e26bc1f", messagingSenderId: "512625998670", projectId: "employeeinfo-a6b48")
+    options: const FirebaseOptions(apiKey: "AIzaSyCqIJOq2rLH9mpMVdOP2I9MY0wPzotkN3c", appId: "1:512625998670:android:4109b190bf674f6e26bc1f", messagingSenderId: "512625998670", projectId: "employeeinfo-a6b48")
   );
   runApp(const MainApp());
 }

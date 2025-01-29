@@ -56,6 +56,8 @@
 // }
 
 //////////////////////////////////////////////////////////////////////////////////////
+library;
+
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -185,7 +187,7 @@ class _TodoListUIState extends State {
                               color: Colors.black.withOpacity(0.2),
                               spreadRadius: 3.5,
                               blurRadius: 4,
-                              offset: Offset(4, 4))
+                              offset: const Offset(4, 4))
                         ]),
                     child: Padding(
                       padding: const EdgeInsets.all(4),
@@ -292,7 +294,7 @@ class _TodoListUIState extends State {
                                               wishlist.removeAt(index);
                                             });
                                           },
-                                          icon: Icon(Icons.delete)),
+                                          icon: const Icon(Icons.delete)),
                                       Text(
                                         "Remove",
                                         style: GoogleFonts.quicksand(
@@ -324,7 +326,7 @@ class _TodoListUIState extends State {
                                     children: [
                                       IconButton(
                                           onPressed: () {
-                                            log("${wishlist[index].productName}");
+                                            log(wishlist[index].productName);
 
                                         FavModel newProduct = FavModel(
                                           productName:wishlist[index].productName,
@@ -346,7 +348,7 @@ class _TodoListUIState extends State {
                                           content: Text('Added to Cart')),
                                     );
                                           },
-                                          icon: Icon(Icons.shopping_cart)),
+                                          icon: const Icon(Icons.shopping_cart)),
                                       Text(
                                         "Add To basket",
                                         style: GoogleFonts.quicksand(

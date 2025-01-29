@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
       else{
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)
         {
-          return SignInScreen();
+          return const SignInScreen();
         }
         ));
       }

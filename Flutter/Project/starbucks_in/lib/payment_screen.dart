@@ -129,7 +129,7 @@ class PaymentScreen extends StatelessWidget {
                 onPressed: () {
                   // Example product to add to the list
 
-                  log("${title}");
+                  log(title);
 
                   Ordermodel newProduct = Ordermodel(
                     productName: title,
@@ -143,7 +143,7 @@ class PaymentScreen extends StatelessWidget {
 
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => OrderTrack()),
+                    MaterialPageRoute(builder: (context) => const OrderTrack()),
                   );
 
                   ScaffoldMessenger.of(context).showSnackBar(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ExpenseGoals extends StatefulWidget {
+  const ExpenseGoals({super.key});
+
   @override
   State createState() => _ExpenseGoalsState();
 }
@@ -42,7 +44,7 @@ class _ExpenseGoalsState extends State<ExpenseGoals> {
     } else {
       // Show an error message if any field is empty
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please fill in all fields')),
+        const SnackBar(content: Text('Please fill in all fields')),
       );
     }
   }
@@ -72,14 +74,14 @@ class _ExpenseGoalsState extends State<ExpenseGoals> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     "Set Goal",
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text(
+                const Text(
                   " Title ",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                 ),
@@ -94,7 +96,7 @@ class _ExpenseGoalsState extends State<ExpenseGoals> {
                   ),
                 ),
                 const SizedBox(height: 15),
-                Text(
+                const Text(
                   " Note ",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                 ),
@@ -111,7 +113,7 @@ class _ExpenseGoalsState extends State<ExpenseGoals> {
                   ),
                 ),
                 const SizedBox(height: 15),
-                Text(
+                const Text(
                   " Due Date ",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                 ),
@@ -141,7 +143,7 @@ class _ExpenseGoalsState extends State<ExpenseGoals> {
                   ),
                 ),
                 const SizedBox(height: 15),
-                Text(
+                const Text(
                   " Total Money Required ",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                 ),
@@ -172,9 +174,9 @@ class _ExpenseGoalsState extends State<ExpenseGoals> {
                           }
                         },
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.blue)
+                          backgroundColor: WidgetStateProperty.all(Colors.blue)
                         ),
-                        child: Text(
+                        child: const Text(
                           "Submit",
                           style: TextStyle(
                             fontSize: 24,
@@ -236,30 +238,30 @@ class _ExpenseGoalsState extends State<ExpenseGoals> {
                   children: [
                     Text(
                       goals[index].title,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w600),
                     ),
                     Text(
                       goals[index].note,
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                      style: const TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                     const SizedBox(height: 10),
                     Text(
                       "Total Money Required: ${goals[index].totalMoneyRequired}",
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                     ),
 
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                      Text(
                       "Completed  : ${goals[index].completed_percent}%",
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 10),
                     Row(
                       children: [
                         Text(
                           goals[index].dueDate,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
                             color: Colors.grey,

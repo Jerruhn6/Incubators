@@ -7,7 +7,7 @@ import 'package:expense_manager/transaction.dart';
 import 'package:flutter/material.dart';
  String? Username;
 class MyHomePage extends StatefulWidget {
-   MyHomePage({Key? key, required String email}) : super(key: key){
+   MyHomePage({super.key, required String email}){
        Username = email.split('@')[0];
   }
 
@@ -35,11 +35,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     /// widget list
     final List<Widget> bottomBarPages = [
-       Myhome(
+       const Myhome(
         // controller: (_controller),
        ),
        FinancialReportPage(),
-       Chat(),
+       const Chat(),
       TransactionsPage(),
        
        ProfileScreen(),
@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: PageView(
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),

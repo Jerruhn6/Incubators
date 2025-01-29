@@ -89,6 +89,8 @@
 // }
 
 ///-------------------------------------new ---------------------------//
+library;
+
 
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 
@@ -299,7 +301,7 @@ class _MyHomePageState extends State<AnimatedNavbar> {
               radius: 6.9,
               backgroundColor: Colors.red,
               child: Text(
-                '${favCount}',
+                '$favCount',
                 style: GoogleFonts.quicksand(
                   fontSize: 10,
                   color: Colors.white,
@@ -326,7 +328,7 @@ class _MyHomePageState extends State<AnimatedNavbar> {
               radius: 6.8,
               backgroundColor: Colors.red,
               child: Text(
-                '${favCount}',
+                '$favCount',
                 style: GoogleFonts.quicksand(
                   fontSize: 10,
                   color: Colors.white,    

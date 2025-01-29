@@ -83,7 +83,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         decoration: InputDecoration(
                             label: const Text('Email'),
                             hintText: 'Enter Email',
-                            labelStyle: TextStyle(color: Colors.black),
+                            labelStyle: const TextStyle(color: Colors.black),
                             hintStyle: GoogleFonts.quicksand(
                               color: Colors.black26,
                             ),

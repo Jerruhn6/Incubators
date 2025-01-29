@@ -23,6 +23,8 @@ class Myhome extends StatelessWidget{
   }
 }
 class Home_Page extends StatefulWidget {
+  const Home_Page({super.key});
+
   @override
   State createState() => _Home_Page();
 }
@@ -135,11 +137,11 @@ class _Home_Page extends State<Home_Page> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
+        leading: const Padding(
+          padding: EdgeInsets.all(8.0),
        
         ),
-        title: Text(
+        title: const Text(
           'Expense Manager',
           style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w900),
           
@@ -147,13 +149,13 @@ class _Home_Page extends State<Home_Page> {
         
         actions: [
           IconButton(
-            icon: Icon(Icons.search, color: Colors.black),
+            icon: const Icon(Icons.search, color: Colors.black),
             onPressed: () {
               // Search action
             },
           ),
           IconButton(
-            icon: Icon(Icons.notifications, color: Colors.black),
+            icon: const Icon(Icons.notifications, color: Colors.black),
             onPressed: () {
               // Notification action
             },
@@ -168,7 +170,7 @@ class _Home_Page extends State<Home_Page> {
            children: [
             
              Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 
               ),
                child: SingleChildScrollView(
@@ -176,7 +178,7 @@ class _Home_Page extends State<Home_Page> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 30,),
+                      const SizedBox(height: 30,),
                       // First show the card with balance
                      Container(
       width: MediaQuery.of(context).size.width*0.92,
@@ -201,10 +203,10 @@ class _Home_Page extends State<Home_Page> {
                     
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee_sharp,color: Colors.white,size: 25,),
+                        const Icon(Icons.currency_rupee_sharp,color: Colors.white,size: 25,),
                         Text(
                           "${amount_received - amount_send}",
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -212,11 +214,11 @@ class _Home_Page extends State<Home_Page> {
                         ),
                       ],
                     ),
-                    Text(Username!,style: TextStyle(color: Colors.white,fontSize: 15),),
+                    Text(Username!,style: const TextStyle(color: Colors.white,fontSize: 15),),
                   ],
                 ),
-                SizedBox(height: 5),
-                Text(
+                const SizedBox(height: 5),
+                const Text(
                   "Balance",
                   style: TextStyle(
                     color: Colors.grey,
@@ -245,7 +247,7 @@ class _Home_Page extends State<Home_Page> {
               ),
             ),
             // Card Number and Mastercard Logo
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Masked Card Number
@@ -301,11 +303,11 @@ class _Home_Page extends State<Home_Page> {
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width / 2.5,
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
                           blurRadius: 5,
@@ -315,15 +317,15 @@ class _Home_Page extends State<Home_Page> {
                     ),
                     child: Column(
                       children: [
-                        Icon(Icons.arrow_downward, color: Colors.green, size: 28),
-                        SizedBox(height: 8),
+                        const Icon(Icons.arrow_downward, color: Colors.green, size: 28),
+                        const SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.currency_rupee_sharp,color: Colors.green,size: 20,),
+                            const Icon(Icons.currency_rupee_sharp,color: Colors.green,size: 20,),
                             Text(
                               '$amount_received',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.green,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -331,7 +333,7 @@ class _Home_Page extends State<Home_Page> {
                             ),
                           ],
                         ),
-                        Text(
+                        const Text(
                           'Income',
                           style: TextStyle(color: Colors.black54),
                         ),
@@ -340,11 +342,11 @@ class _Home_Page extends State<Home_Page> {
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width / 2.5,
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
                           blurRadius: 5,
@@ -354,15 +356,15 @@ class _Home_Page extends State<Home_Page> {
                     ),
                     child: Column(
                       children: [
-                        Icon(Icons.arrow_upward, color: Colors.orange, size: 28),
-                        SizedBox(height: 8),
+                        const Icon(Icons.arrow_upward, color: Colors.orange, size: 28),
+                        const SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.currency_rupee_sharp,color: Colors.orange,size: 20,),
+                            const Icon(Icons.currency_rupee_sharp,color: Colors.orange,size: 20,),
                             Text(
                               '$amount_send',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.orange,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -370,7 +372,7 @@ class _Home_Page extends State<Home_Page> {
                             ),
                           ],
                         ),
-                        Text(
+                        const Text(
                           'Expense',
                           style: TextStyle(color: Colors.black54),
                         ),
@@ -379,21 +381,21 @@ class _Home_Page extends State<Home_Page> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Transactions Header
-              Text(
+              const Text(
                 'Recent Transations',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               // Transaction Card 1
               Container(
-  margin: EdgeInsets.symmetric(vertical: 8.0),
-  padding: EdgeInsets.all(16.0),
+  margin: const EdgeInsets.symmetric(vertical: 8.0),
+  padding: const EdgeInsets.all(16.0),
   decoration: BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.circular(12),
-    boxShadow: [
+    boxShadow: const [
       BoxShadow(
         color: Colors.black12,
         blurRadius: 5,
@@ -415,26 +417,26 @@ class _Home_Page extends State<Home_Page> {
 
            ( transactions[transactions.length - 1]['receiver']==null?'wait':
             '${transactions[transactions.length - 1]['receiver']}'),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 4), // Space between receiver and category
+          const SizedBox(height: 4), // Space between receiver and category
           Text(
              transactions[transactions.length - 1]['category']==null?'wait':
             '${transactions[transactions.length - 1]['category']}',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               color: Colors.blueGrey,
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(height: 4), // Space between category and timestamp
+          const SizedBox(height: 4), // Space between category and timestamp
           Text(
             ( transactions[transactions.length - 1]['timestamp']==null?'wait':
             '${transactions[transactions.length - 1]['timestamp']}'),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               color: Colors.black54,
             ),
@@ -444,7 +446,7 @@ class _Home_Page extends State<Home_Page> {
       Text(
         ( transactions[transactions.length - 1]['amount']==null?'wait':
             '${transactions[transactions.length - 1]['amount']}'),
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
           color: Colors.red,
@@ -456,12 +458,12 @@ class _Home_Page extends State<Home_Page> {
 
               // Transaction Card 2
               Container(
-  margin: EdgeInsets.symmetric(vertical: 8.0),
-  padding: EdgeInsets.all(16.0),
+  margin: const EdgeInsets.symmetric(vertical: 8.0),
+  padding: const EdgeInsets.all(16.0),
   decoration: BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.circular(12),
-    boxShadow: [
+    boxShadow: const [
       BoxShadow(
         color: Colors.black12,
         blurRadius: 5,
@@ -483,26 +485,26 @@ class _Home_Page extends State<Home_Page> {
 
            ( transactions[transactions.length - 2]['receiver']==null?'wait':
             '${transactions[transactions.length - 2]['receiver']}'),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 4), // Space between receiver and category
+          const SizedBox(height: 4), // Space between receiver and category
           Text(
              transactions[transactions.length - 2]['category']==null?'wait':
             '${transactions[transactions.length - 2]['category']}',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14,
               color: Colors.blueGrey,
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(height: 4), // Space between category and timestamp
+          const SizedBox(height: 4), // Space between category and timestamp
           Text(
             ( transactions[transactions.length - 2]['timestamp']==null?'wait':
             '${transactions[transactions.length - 2]['timestamp']}'),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               color: Colors.black54,
             ),
@@ -512,7 +514,7 @@ class _Home_Page extends State<Home_Page> {
       Text(
         ( transactions[transactions.length - 2]['amount']==null?'wait':
             '${transactions[transactions.length - 2]['amount']}'),
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
           color: Colors.red,
@@ -530,13 +532,13 @@ class _Home_Page extends State<Home_Page> {
                        // My Savings Container
                        Container(
                   width: 100, // Adjust width as necessary
-                  padding: EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.all(12.0),
                   decoration: BoxDecoration(
                     color: Colors.lightBlue[100], // Sky blue background
                     border: Border.all(color: Colors.blue[900]!, width: 2), // Dark blue border
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Column(
+                  child: const Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(Icons.savings, color: Colors.purple, size: 30), // Icon for savings
@@ -566,13 +568,13 @@ class _Home_Page extends State<Home_Page> {
                  },
                  child: Container(
                    width: 100, // Adjust width as necessary
-                   padding: EdgeInsets.all(12.0),
+                   padding: const EdgeInsets.all(12.0),
                    decoration: BoxDecoration(
                      color: Colors.lightBlue[100], // Sky blue background
                      border: Border.all(color: Colors.blue[900]!, width: 2), // Dark blue border
                      borderRadius: BorderRadius.circular(10),
                    ),
-                   child: Column(
+                   child: const Column(
                      mainAxisSize: MainAxisSize.min,
                      children: [
                 Icon(Icons.flag, color: Colors.blue, size: 30), // Icon for goals
@@ -595,13 +597,13 @@ class _Home_Page extends State<Home_Page> {
                        // Notes Container
                        Container(
                   width: 100, // Adjust width as necessary
-                  padding: EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.all(12.0),
                   decoration: BoxDecoration(
                     color: Colors.lightBlue[100], // Sky blue background
                     border: Border.all(color: Colors.blue[900]!, width: 2), // Dark blue border
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Column(
+                  child: const Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(Icons.note, color: Colors.purple, size: 30), // Icon for notes
@@ -627,7 +629,7 @@ class _Home_Page extends State<Home_Page> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: Colors.black12,
                                 blurRadius: 8.0,
@@ -642,7 +644,7 @@ class _Home_Page extends State<Home_Page> {
                           ),
                         ),
                       ),
-                    SizedBox(height: 50,)],
+                    const SizedBox(height: 50,)],
                   ),
                   
                        ),

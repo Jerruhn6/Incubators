@@ -5,6 +5,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -86,7 +88,7 @@ class CoffeeShopScreen extends StatelessWidget {
           Text(name),
           Text('\$$price'),
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () {}, // Add to cart functionality
           ),
         ],

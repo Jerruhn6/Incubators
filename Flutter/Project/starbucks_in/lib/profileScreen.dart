@@ -300,6 +300,8 @@
 
 
 /////////////////////////////////////////////////////////////////////////////////////
+library;
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -548,11 +550,11 @@ class EditProfilePage extends StatefulWidget {
   final String location;
 
   const EditProfilePage({
-    Key? key,
+    super.key,
     required this.name,
     required this.phone,
     required this.location,
-  }) : super(key: key);
+  });
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();

@@ -172,7 +172,7 @@ class _SofaScreenState extends State<Commanscreen> {
                         Container(
                           clipBehavior: Clip.antiAlias,
                           decoration: const BoxDecoration(
-                            borderRadius: const BorderRadius.vertical(
+                            borderRadius: BorderRadius.vertical(
                               top: Radius.circular(10),
                             ),
                           ),
@@ -237,7 +237,7 @@ class _SofaScreenState extends State<Commanscreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 8),
+                                  padding: const EdgeInsets.symmetric(horizontal: 8),
                                   child: Row(
                                     children: [
                                       Expanded(

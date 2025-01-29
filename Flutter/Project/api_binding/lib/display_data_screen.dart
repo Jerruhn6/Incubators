@@ -55,7 +55,7 @@ class _DisplayDataScreenState extends State<DisplayDataScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8),
-                      child: Container(
+                      child: SizedBox(
                         height: 200,
                         width: 350,
                         child: Image.network(

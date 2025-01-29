@@ -56,7 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         style: GoogleFonts.quicksand(
                           fontSize: 30.0,
                           fontWeight: FontWeight.w900,
-                          color: Color(0xFF416FDF),
+                          color: const Color(0xFF416FDF),
                         ),
                       ),
                       const SizedBox(
@@ -169,7 +169,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 agreePersonalData = value!;
                               });
                             },
-                            activeColor: Color(0xFF416FDF),
+                            activeColor: const Color(0xFF416FDF),
                           ),
                           Text(
                             'I agree to the processing of ',
@@ -181,7 +181,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             'Personal data',
                             style: GoogleFonts.quicksand(
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF416FDF),
+                              color: const Color(0xFF416FDF),
                             ),
                           ),
                         ],
@@ -224,7 +224,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
        context: context,);
     }
                             Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                              return SignInScreen();
+                              return const SignInScreen();
                             }));
                             if (_formSignupKey.currentState!.validate() &&
                                 agreePersonalData) {
@@ -258,7 +258,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                               vertical: 0,
                               horizontal: 10,
                             ),
@@ -308,7 +308,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (e) => SignInScreen(),
+                                  builder: (e) => const SignInScreen(),
                                 ),
                               );
                             },
@@ -316,7 +316,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               'Sign in',
                               style: GoogleFonts.quicksand(
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF416FDF),
+                                color: const Color(0xFF416FDF),
                               ),
                             ),
                           ),

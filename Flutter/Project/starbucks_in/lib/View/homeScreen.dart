@@ -14,8 +14,6 @@ import 'package:starbucks_in/Model/favModel.dart';
 import 'package:starbucks_in/Model/icecram_model.dart';
 
 import 'package:starbucks_in/View/commanScreen.dart';
-import 'package:starbucks_in/cart.dart';
-import 'package:starbucks_in/favorite_screen.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:starbucks_in/not%20used/database.dart';

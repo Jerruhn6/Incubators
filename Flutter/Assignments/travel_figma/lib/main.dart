@@ -2,7 +2,7 @@ import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
 void main(){
-  runApp(MyApp());
+  runApp(const MyApp());
 
 }
 class MyApp extends StatelessWidget{
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget{
       home: Scaffold(
         appBar:AppBar(
           centerTitle: true,
-          backgroundColor: Color.fromRGBO(27, 28, 101, 100),
+          backgroundColor: const Color.fromRGBO(27, 28, 101, 100),
           title:const Text("Where do you want to travel?",
           style: TextStyle(fontSize: 23,
           fontWeight: FontWeight.bold,
@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget{
             const SizedBox(
               height: 20,
             ),
-            Container(
+            SizedBox(
               height:145,
               width: 467, 
               child:const Padding(

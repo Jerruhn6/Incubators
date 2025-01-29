@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 String? touser;
 class PaymentScreen extends StatefulWidget {
   final String username;
-   PaymentScreen(this.username, {Key? key}) : super(key: key){
+   PaymentScreen(this.username, {super.key}){
     touser=username;
    }
 

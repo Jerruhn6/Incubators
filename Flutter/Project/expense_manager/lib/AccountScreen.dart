@@ -6,11 +6,11 @@ class AccountScreen extends StatefulWidget {
   final String currentPhone;
 
   const AccountScreen({
-    Key? key,
+    super.key,
     required this.currentName,
     required this.currentEmail,
     required this.currentPhone,
-  }) : super(key: key);
+  });
 
   @override
   _AccountScreenState createState() => _AccountScreenState();

@@ -129,6 +129,8 @@ Future<void> fetchDataFromFirebase() async {
 }
 
 class CoffeeScreen extends StatefulWidget {
+  const CoffeeScreen({super.key});
+
   @override
   _CoffeeScreenState createState() => _CoffeeScreenState();
 }
@@ -169,11 +171,11 @@ class _CoffeeScreenState extends State<CoffeeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Coffee List'),
+        title: const Text('Coffee List'),
         backgroundColor: Colors.brown,
       ),
       body: coffeeList.isEmpty
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               itemCount: coffeeList.length,
               itemBuilder: (context, index) {
@@ -187,10 +189,10 @@ class _CoffeeScreenState extends State<CoffeeScreen> {
                           width: 50,
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
-                            return Icon(Icons.image_not_supported);
+                            return const Icon(Icons.image_not_supported);
                           },
                         )
-                      : Icon(Icons.local_cafe, size: 50),
+                      : const Icon(Icons.local_cafe, size: 50),
                   title: Text(coffee['name'] ?? 'Unknown Coffee'),
                   subtitle: Text(
                     "Price: \$${coffee['price']?.toStringAsFixed(2) ?? '0.00'}",

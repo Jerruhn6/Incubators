@@ -281,7 +281,7 @@ class _TodoListUIState extends State {
                         border: Border.all(color: Colors.black),
                         boxShadow: [
                           BoxShadow(color:Colors.black.withOpacity(0.2),
-                          spreadRadius: 3.5,blurRadius: 4,offset: Offset(4,4)
+                          spreadRadius: 3.5,blurRadius: 4,offset: const Offset(4,4)
                           )
 
                         ]
@@ -391,7 +391,7 @@ class _TodoListUIState extends State {
                                     children: [
                                       IconButton(
                                           onPressed: () {},
-                                          icon: Icon(Icons.delete)),
+                                          icon: const Icon(Icons.delete)),
                                       Text(
                                         "Remove",
                                         style: GoogleFonts.quicksand(
@@ -437,7 +437,7 @@ class _TodoListUIState extends State {
                                 );
                               }));
                                           },
-                                          icon: Icon(Icons.shopping_cart)),
+                                          icon: const Icon(Icons.shopping_cart)),
                                       Text(
                                         "Buy Now",
                                         style: GoogleFonts.quicksand(

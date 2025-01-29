@@ -8,6 +8,8 @@ import 'package:firebase_core/firebase_core.dart';
 
 
 class TransactionsPage extends StatefulWidget {
+  const TransactionsPage({super.key});
+
   @override
   State createState() => _TransactionsPageState();
 }
@@ -77,30 +79,30 @@ class _TransactionsPageState extends State<TransactionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transactions'),
+        title: const Text('Transactions'),
     //    backgroundColor: Colors.purple,
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {},
           ),
         ],
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator()) // Show loading indicator
+          ? const Center(child: CircularProgressIndicator()) // Show loading indicator
           : allTransactions.isEmpty
-              ? Center(
+              ? const Center(
                   child: Text(
                     'No Transactions Found',
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                 )
               : ListView.builder(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   itemCount: allTransactions.length,
                   itemBuilder: (context, index) {
                     final data = allTransactions[index];
@@ -124,7 +126,7 @@ class TransactionTile extends StatelessWidget {
   final DateTime timestamp;
   final String category;
 
-  TransactionTile({
+  const TransactionTile({super.key, 
     required this.sender,
     required this.receiver,
     required this.amount,
@@ -135,12 +137,12 @@ class TransactionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
-      padding: EdgeInsets.all(12.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.all(12.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10.0),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black12,
             blurRadius: 6.0,
@@ -153,25 +155,25 @@ class TransactionTile extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundColor: Colors.purpleAccent,
-            child: Text(sender[0].toUpperCase(), style: TextStyle(color: Colors.white)),
+            child: Text(sender[0].toUpperCase(), style: const TextStyle(color: Colors.white)),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   '$sender ➡ $receiver',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   '${timestamp.toLocal()}'.split('.')[0], // Display date and time
-                  style: TextStyle(fontSize: 14.0, color: Colors.grey),
+                  style: const TextStyle(fontSize: 14.0, color: Colors.grey),
                 ),
               ],
             ),
@@ -187,10 +189,10 @@ class TransactionTile extends StatelessWidget {
                   color:(sender == Username) ? Colors.red : Colors.green,
                 ),
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
                 category,
-                style: TextStyle(fontSize: 12.0, color: Colors.grey),
+                style: const TextStyle(fontSize: 12.0, color: Colors.grey),
               ),
             ],
           ),

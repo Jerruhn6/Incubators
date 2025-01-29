@@ -103,7 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide:BorderSide(
                               color: Colors.blue,
                               width: 1.5
@@ -127,7 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         decoration: InputDecoration(
                           label: const Text('Email'),
                           hintText: 'Enter Email',
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                             color: Colors.black
                           ),
                           hintStyle: GoogleFonts.quicksand(
@@ -145,7 +145,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide:BorderSide(
                               color: Colors.blue,
                               width: 1.5
@@ -170,7 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         decoration: InputDecoration(
                           label: const Text('Password'),
                           hintText: 'Enter Password',
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                             color: Colors.black
                           ),
                           hintStyle: GoogleFonts.quicksand(

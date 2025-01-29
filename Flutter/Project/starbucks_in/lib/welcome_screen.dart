@@ -66,7 +66,7 @@ class WelcomeScreen extends StatelessWidget {
                     child: WelcomeButton(
                       buttonText: 'User',
                       onTap: SignInScreen(isUser: true,),
-                      color: Color.fromARGB(49, 255, 255, 255),
+                      color: const Color.fromARGB(49, 255, 255, 255),
                       textColor:  const Color(0xFFFFA726),
                     ),
                   ),

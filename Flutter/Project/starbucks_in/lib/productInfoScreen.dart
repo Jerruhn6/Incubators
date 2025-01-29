@@ -62,7 +62,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
             size: 22,
             color: Colors.white,
@@ -98,7 +98,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   children: [
                     Row(
                       children: [
-                        Container(
+                        SizedBox(
                           width: 270,
                           
                           child: Text(
@@ -107,7 +107,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 fontSize: 25, fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         IconButton(
                           icon: const Icon(
                             Icons.share,
@@ -187,7 +187,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
                         GestureDetector(
                           onTap: () {
-                            log("${widget.title}");
+                            log(widget.title);
 
                                         FavModel newProduct = FavModel(
                                           productName: widget.title,
@@ -251,7 +251,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                   ]),
             ),
-            SizedBox(height: 100,),
+            const SizedBox(height: 100,),
           ],
         ),
       ),

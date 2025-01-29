@@ -7,6 +7,8 @@ import 'package:expense_manager/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -51,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   SessionData.getSessionData();
                   SessionData.isLogin=false;
 
-                  return WelcomeScreen();
+                  return const WelcomeScreen();
                  
                 }));
               },
@@ -80,15 +82,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Center(
                 child: Column(
                   children: [
-                    Stack(
+                    const Stack(
                       children: [
                         CircleAvatar(
                           radius: 45,
                           backgroundColor: Colors.purple,
                           child: CircleAvatar(
                             radius: 42,
-                            backgroundColor: const Color.fromARGB(255, 237, 206, 243),
-                            child: const Icon(
+                            backgroundColor: Color.fromARGB(255, 237, 206, 243),
+                            child: Icon(
                               Icons.person,
                               size: 50,
                               color: Colors.purple,
@@ -160,7 +162,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SettingsPage()),
+                          MaterialPageRoute(builder: (context) => const SettingsPage()),
                         );
                       },
                     ),
@@ -189,12 +191,12 @@ class ProfileListTile extends StatelessWidget {
   final Color color;
 
   const ProfileListTile({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
     required this.onTap,
     required this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

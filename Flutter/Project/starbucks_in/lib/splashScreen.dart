@@ -1,15 +1,10 @@
 import 'dart:developer';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:starbucks_in/ADMIN_SIDE/adminScreen.dart';
-import 'package:starbucks_in/View/commanScreen.dart';
-import 'package:starbucks_in/View/homeScreen.dart';
 import 'package:starbucks_in/cart.dart';
 import 'package:starbucks_in/favorite_screen.dart';
 // ignore: unused_import
 import 'package:starbucks_in/navigator.dart';
-import 'package:starbucks_in/Model/productModel.dart';
 // ignore: unused_import
 import 'package:starbucks_in/session.dart';
 

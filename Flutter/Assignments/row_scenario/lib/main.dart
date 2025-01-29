@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget{
           centerTitle: true,
           backgroundColor: Colors.blue,
         ),
-        body: Container(
+        body: SizedBox(
           height: MediaQuery.of(context).size.height,
 
           child: Row(

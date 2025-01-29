@@ -31,7 +31,7 @@ class _AdminScreenState extends State<AdminScreen> {
             }));
           },
           child: Padding(
-            padding:EdgeInsets.all(8.0),
+            padding:const EdgeInsets.all(8.0),
             child:  CircleAvatar(
                               radius: 25,
                               backgroundColor: Colors.black,
@@ -222,12 +222,12 @@ class _AdminScreenState extends State<AdminScreen> {
 
   void _navigateToShopDetails() {
     // Navigate to Shop Details Screen
-     Navigator.push(context, MaterialPageRoute(builder: (context) => ShopDetailsPage()));
+     Navigator.push(context, MaterialPageRoute(builder: (context) => const ShopDetailsPage()));
   }
 
   void _navigateToInventory() {
     // Navigate to Inventory Management Screen
-     Navigator.push(context, MaterialPageRoute(builder: (context) =>  InventoryScreen()));
+     Navigator.push(context, MaterialPageRoute(builder: (context) =>  const InventoryScreen()));
   }
 
   void _navigateToOrders() {

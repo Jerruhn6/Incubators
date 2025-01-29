@@ -11,6 +11,8 @@ Map<String, Color> predefinedCategoryColors = {
 Map<String, Color> categoryColors = {};
 
 class FinancialReportPage extends StatefulWidget {
+  const FinancialReportPage({super.key});
+
   @override
   _FinancialReportPageState createState() => _FinancialReportPageState();
 }
@@ -158,7 +160,7 @@ class ExpenseItem extends StatelessWidget {
   final Color color;
   final double progress;
 
-  const ExpenseItem({
+  const ExpenseItem({super.key, 
     required this.title,
     required this.amount,
     required this.color,

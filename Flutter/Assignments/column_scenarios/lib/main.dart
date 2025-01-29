@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget{
             fontWeight: FontWeight.w400),
           ),
           centerTitle: true,
-          backgroundColor:Color.fromARGB(255, 46, 46, 46),
+          backgroundColor:const Color.fromARGB(255, 46, 46, 46),
         ),
         body: SizedBox(
           width: MediaQuery.of(context).size.width,

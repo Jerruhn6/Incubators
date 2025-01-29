@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -29,8 +31,8 @@ class _BookMyShowHomePageState extends State<BookMyShowHomePage> {
         title: const Text('It All Starts Here!'),
         actions: [
           IconButton(icon: const Icon(Icons.search), onPressed: () {}),
-          IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
-          IconButton(icon:Icon(Icons.qr_code),onPressed:() {}),
+          IconButton(icon: const Icon(Icons.notifications), onPressed: () {}),
+          IconButton(icon:const Icon(Icons.qr_code),onPressed:() {}),
         ],
       ),
       body: SingleChildScrollView(

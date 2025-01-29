@@ -10,6 +10,8 @@ List<dynamic> orderList = [];
 int ordCount = 0;
 
 class OrdersPage extends StatefulWidget {
+  const OrdersPage({super.key});
+
   @override
   _OrdersPageState createState() => _OrdersPageState();
 }
@@ -194,7 +196,7 @@ class _OrdersPageState extends State<OrdersPage> {
     return ElevatedButton(
       onPressed: ()=> _showOrderActionDialog(context, order),
         
-      style: ButtonStyle(
+      style: const ButtonStyle(
         backgroundColor: WidgetStatePropertyAll(Colors.brown)
       ),
       child: const Text('Manage Order',style: TextStyle(color: Colors.white),),

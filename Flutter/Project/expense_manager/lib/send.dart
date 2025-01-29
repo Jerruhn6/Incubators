@@ -7,7 +7,7 @@ final usernameController = TextEditingController();
  final amountController = TextEditingController();
   List<Map<String, dynamic>> transactions = [];
 class Send extends StatefulWidget {
-  Send(String touser){
+  Send(String touser, {super.key}){
     usernameController.text = touser;
   }
   @override

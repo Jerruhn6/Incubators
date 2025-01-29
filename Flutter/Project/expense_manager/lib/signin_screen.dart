@@ -54,7 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         style: GoogleFonts.quicksand(
                           fontSize: 30.0,
                           fontWeight: FontWeight.w900,
-                          color: Color(0xFF416FDF),
+                          color: const Color(0xFF416FDF),
                         ),
                       ),
                       const SizedBox(
@@ -136,7 +136,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     rememberPassword = value!;
                                   });
                                 },
-                                activeColor: Color(0xFF416FDF),
+                                activeColor: const Color(0xFF416FDF),
                               ),
                               Text(
                                 'Remember me',
@@ -151,7 +151,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               'Forget password?',
                               style: GoogleFonts.quicksand(
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF416FDF),
+                                color: const Color(0xFF416FDF),
                               ),
                             ),
                           ),
@@ -267,7 +267,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               'Sign up',
                               style: GoogleFonts.quicksand(
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF416FDF),
+                                color: const Color(0xFF416FDF),
                               ),
                             ),
                           ),

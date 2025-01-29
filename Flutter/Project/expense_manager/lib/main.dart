@@ -19,7 +19,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
    
   await initializeDatabase(); // Initialize the database
-  await Firebase.initializeApp(options:FirebaseOptions(
+  await Firebase.initializeApp(options:const FirebaseOptions(
     apiKey: "AIzaSyBIAeQ1r1fpN4RM3yr6ab9HCsNEbGDyKz0",
      appId: "1:138233364769:android:4ce28b368b2072bef33e60",
       messagingSenderId: "138233364769", 
@@ -29,7 +29,7 @@ void main() async{
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
