@@ -16,6 +16,7 @@ class SplashScreen extends StatelessWidget {
 
       await SessionData.getSessionData();
 
+
       if(SessionData.isLogin!){
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)
         {
@@ -55,9 +56,10 @@ class SplashScreen extends StatelessWidget {
           //   child: Image.asset("assets/images/background.jpg"),
           // ),
           Center(
+           
             child: SizedBox(
-              width: 250,
-              height: 250,
+              width: 300,
+              height: 300,
               child: Image.asset("assets/images/logo.jpeg"),
             ),
           ),
