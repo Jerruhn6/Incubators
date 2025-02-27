@@ -25,7 +25,6 @@ class Commanscreen extends StatefulWidget {
 }
 
 class _SofaScreenState extends State<Commanscreen> {
-
   bool changeColour = false;
   final dynamic favProducts = [];
   final dynamic products = list2;
@@ -64,7 +63,6 @@ class _SofaScreenState extends State<Commanscreen> {
     }
   }
 
-
   //----------------------------get data---------------------------------//
 
   @override
@@ -72,7 +70,7 @@ class _SofaScreenState extends State<Commanscreen> {
     dynamic products = list2;
     bool isSelected = false;
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: Text(
           appBarTitle!,
           style: GoogleFonts.quicksand(
@@ -88,7 +86,6 @@ class _SofaScreenState extends State<Commanscreen> {
             child: const Icon(Icons.arrow_back_ios_new_rounded,
                 size: 24, color: Colors.white)),
         actions: [
-          
           IconButton(
             onPressed: () {
               Navigator.pushReplacement(context,
@@ -126,15 +123,12 @@ class _SofaScreenState extends State<Commanscreen> {
           ),
         ],
       ),
-
-
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-       
           Expanded(
             child: GridView.builder(
-              padding: const EdgeInsets.all( 16),
+              padding: const EdgeInsets.all(16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 0.7,
@@ -224,7 +218,6 @@ class _SofaScreenState extends State<Commanscreen> {
                                       },
                                     )),
                               ),
-
                             ],
                           ),
                         ),
@@ -237,7 +230,8 @@ class _SofaScreenState extends State<Commanscreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 8),
                                   child: Row(
                                     children: [
                                       Expanded(
@@ -259,7 +253,7 @@ class _SofaScreenState extends State<Commanscreen> {
                                     ],
                                   ),
                                 ),
-                               const Spacer(),
+                                const Spacer(),
                                 ElevatedButton(
                                   // onPressed: () {
                                   //   setState(() {
@@ -275,32 +269,32 @@ class _SofaScreenState extends State<Commanscreen> {
                                   //   );
                                   // },
                                   onPressed: () {
-                                        // Example product to add to the list
-                                        log("${product.name}");
+                                    // Example product to add to the list
+                                    log("${product.name}");
 
-                                        FavModel newProduct = FavModel(
-                                          productName: product.name,
-                                          productImage: product.image_path!, // You can use an image URL
-                                          productPrice: product.price,
-                                        );
-                                        addToBasket(newProduct);
-                                        setState(() {
-                                          if (isBasket) {
-                                            basketIndices.remove(
-                                                index); // Remove from favorites
-                                          } else {
-                                            basketIndices
-                                                .add(index); // Add to favorites
-                                          }
-                                        });
-                                        ScaffoldMessenger.of(context).showSnackBar(
+                                    FavModel newProduct = FavModel(
+                                      productName: product.name,
+                                      productImage: product
+                                          .image_path!, // You can use an image URL
+                                      productPrice: product.price,
+                                    );
+                                    addToBasket(newProduct);
+                                    setState(() {
+                                      if (isBasket) {
+                                        basketIndices.remove(
+                                            index); // Remove from favorites
+                                      } else {
+                                        basketIndices
+                                            .add(index); // Add to favorites
+                                      }
+                                    });
+                                    ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
                                           content: Text('Added to Cart')),
                                     );
-                                      },
-                                  
+                                  },
+
                                   style: ElevatedButton.styleFrom(
-                                    
                                     backgroundColor: Colors.brown,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8),
@@ -311,12 +305,10 @@ class _SofaScreenState extends State<Commanscreen> {
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ),
-                                
                               ],
                             ),
                           ),
                         ),
-                       
                       ],
                     ),
                   ),
@@ -324,7 +316,6 @@ class _SofaScreenState extends State<Commanscreen> {
               },
             ),
           ),
-       
         ],
       ),
     );

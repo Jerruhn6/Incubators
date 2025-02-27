@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "90828166014",
+    "project_id": "homecraftauthentication",
+    "storage_bucket": "homecraftauthentication.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90828166014:android:1ffd311d998f88ee75d92f",
+        "android_client_info": {
+          "package_name": "com.example.homecraft_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGs88y9uNZkAnie11REz60FL5nO1XQRj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

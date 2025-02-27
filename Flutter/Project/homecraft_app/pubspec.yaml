@@ -1,0 +1,63 @@
+name: homecraft_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  persistent_bottom_nav_bar: ^6.2.1
+  animated_notch_bottom_bar: ^1.0.3
+  cupertino_icons: ^1.0.2
+  icons_plus: ^4.0.0
+  firebase_core: ^3.8.0
+  firebase_auth: ^5.3.3
+  shared_preferences: ^2.3.3
+  flutter_launcher_icons: ^0.14.1
+  intl: ^0.19.0
+  cloud_firestore: ^5.5.0
+  firebase_storage: ^12.3.6
+  firebase_database: ^11.1.6
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/Images/logo.jpg"
+  adaptive_icon_foreground: "assets/Images/1024.png"
+  adaptive_icon_background: "#ffffff"
+
+flutter:
+  uses-material-design: true
+  assets:
+      - assets/Images/
+      - assets/Images/socialmedia/
+      - assets/LivingRoom/OccasionalChairs/
+      - assets/LivingRoom/ShoeRacks/
+      - assets/LivingRoom/Sofas/
+      - assets/LivingRoom/TVUnits/
+      - assets/BedRoom/Beds/
+      - assets/BedRoom/Drawers/
+      - assets/BedRoom/Mattresses/
+      - assets/BedRoom/Wardrobes/
+      - assets/Decor/HomeAccessories/
+      - assets/Decor/Lamps/
+      - assets/Decor/WallAccents/
+      - assets/Furnishing/Curtains/
+      - assets/Furnishing/Cushions/
+      - assets/DiningRoom/Bar/
+      - assets/DiningRoom/DiningChairs/
+      - assets/DiningRoom/DiningTables/
+      - assets/DiningRoom/DiningTableSets/
+      - assets/Kitchen/CookWare/
+      - assets/Kitchen/KitchenLinens/
+      
+
